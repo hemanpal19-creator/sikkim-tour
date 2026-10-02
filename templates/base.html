@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Makes the website responsive on phones, tablets and desktops. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Child pages can replace the title and description for SEO. -->
+    <title>{% block title %}Sikkim Tour{% endblock %}</title>
+
+    <meta
+        name="description"
+        content="{% block meta_description %}Explore Sikkim through unforgettable journeys, destinations and experiences.{% endblock %}"
+    >
+
+    <!-- Global stylesheet used throughout the entire website. -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    <!-- Child pages can load their own additional CSS. -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!--
+        Global navigation will live here.
+        Every page will automatically receive the same navigation.
+    -->
+    <header class="site-header">
+        <nav class="site-nav">
+
+            <!-- Website logo always returns to the homepage. -->
+            <a href="{% url 'home' %}" class="site-logo">
+            SIKKIM TOUR
+            </a>
+
+            <!-- Desktop navigation links. -->
+            <div class="site-nav-links">
+                <a href="#">Destinations</a>
+                <a href="#">Journeys</a>
+                <a href="#">Experiences</a>
+                <a href="#">Stays</a>
+                <a href="#">Journal</a>
+            </div>
+
+            <!-- Primary business CTA. We will connect this to the enquiry
+                 system once that app is developed. -->
+            <a href="#" class="nav-cta">
+                Plan my journey
+            </a>
+
+            <!-- Mobile menu button. JavaScript will control it later. -->
+            <button
+                class="mobile-menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </nav>
+    </header>
+
+    <!--
+        Main page content changes from page to page.
+        Individual templates will put their content inside this block.
+    -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer will be developed after the main design system. -->
+    <footer class="site-footer">
+        <p>© {% now "Y" %} Sikkim Tour. All rights reserved.</p>
+    </footer>
+
+    <!-- Global JavaScript will control shared interactions and animations. -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Child pages can load additional JavaScript when required. -->
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>
