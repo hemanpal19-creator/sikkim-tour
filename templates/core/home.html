@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Sikkim Tour | Discover the Himalayas{% endblock %}
+
+{% block meta_description %}
+Discover Sikkim through thoughtfully planned journeys, breathtaking destinations,
+unique experiences and stays across the Himalayas.
+{% endblock %}
+
+{% block content %}
+
+<!--
+    Homepage hero.
+    This is intentionally image-led because tourism websites depend heavily
+    on strong visual storytelling.
+-->
+<section class="hero">
+
+    <!--
+        The background image will eventually be replaced with a curated
+        Sikkim image from our project media/content system.
+    -->
+    <div class="hero-media">
+        <!-- Temporary Sikkim hero image.
+        We will later move this into Django's media/content system. -->
+        <img
+            src="https://www.travelholicq.com/wp-content/uploads/2019/12/Charming-Lakes-That-You-Must-Visit-In-Sikkim.jpg"
+            alt="Mountain landscape in Sikkim"
+        >
+    </div>
+
+    <!-- Dark overlay keeps the text readable without hiding the image. -->
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <p class="hero-eyebrow">
+            Journey into the Himalayas
+        </p>
+
+        <h1>
+            Discover<br>
+            <span>Sikkim differently.</span>
+        </h1>
+
+        <p class="hero-description">
+            Quiet mountain roads, ancient monasteries, unforgettable landscapes
+            and journeys made around the way you want to travel.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#" class="btn btn-light">
+                Explore Sikkim
+                <span aria-hidden="true">↗</span>
+            </a>
+
+            <a href="#" class="hero-text-link">
+                Plan my journey
+                <span aria-hidden="true">→</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Small scroll indicator adds a subtle invitation to explore. -->
+    <div class="hero-scroll">
+        <span>Scroll to explore</span>
+        <span class="hero-scroll-line"></span>
+    </div>
+
+</section>
+<!--
+    Introduction section.
+    This establishes the website's editorial/luxury travel feel
+    before we start showing destinations and tour packages.
+-->
+<section class="intro-section">
+
+    <div class="container intro-grid">
+
+        <!-- Small visual block creates a different composition from the hero. -->
+        <div class="intro-visual reveal reveal-image">
+            <div class="intro-image-frame">
+                <img
+                    src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=85"
+                    alt="Mountain landscape of Sikkim"
+                >
+            </div>
+
+            <div class="intro-location">
+                <span class="intro-location-line"></span>
+                <span>Sikkim · India</span>
+            </div>
+        </div>
+
+        <!-- Text intentionally remains simple so the image carries part
+             of the storytelling. -->
+        <div class="intro-content reveal reveal-text">
+
+            <p class="section-label">
+                More than a destination
+            </p>
+
+            <h2>
+                A Himalayan journey<br>
+                worth remembering.
+            </h2>
+
+            <p class="intro-description">
+                Sikkim is a place of quiet mountain roads, ancient monasteries,
+                alpine lakes and villages hidden among the Himalayas. Every
+                journey here feels different because the landscape is only
+                part of the story.
+            </p>
+
+            <p class="intro-description">
+                We create thoughtfully planned journeys that let you experience
+                Sikkim beyond the usual tourist route — at your own pace,
+                with places and experiences chosen around you.
+            </p>
+
+            <a href="#" class="intro-link">
+                Discover the story of Sikkim
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     FEATURED DESTINATIONS
+     ========================================================= -->
+<section class="destinations-section">
+
+    <div class="container">
+
+        <div class="destinations-heading">
+            <div>
+                <p class="section-label">Places worth discovering</p>
+
+                <h2>
+                    Sikkim,<br>
+                    place by place.
+                </h2>
+            </div>
+
+            <p class="destinations-intro">
+                From lively mountain towns to quiet valleys and high-altitude
+                landscapes, discover the places that make Sikkim unforgettable.
+            </p>
+        </div>
+
+
+        <!--
+            These cards are generated from the Destination model.
+            Adding a destination through Django Admin will automatically
+            make it available here.
+        -->
+        <div class="destination-grid">
+
+            {% for destination in destinations %}
+
+                <article class="destination-card reveal reveal-card">
+                    <!-- Each card now opens its own database-driven destination page. -->
+                    <a 
+                        href="{% url 'destination_detail' destination.slug %}" 
+                        class="destination-image"
+                    >
+
+                        {% if destination.hero_image %}
+                            <img
+                                src="{{ destination.hero_image.url }}"
+                                alt="{{ destination.name }}"
+                                loading="lazy"
+                            >
+                        {% endif %}
+
+                        <span class="destination-arrow">↗</span>
+
+                    </a>
+
+                    <div class="destination-info">
+
+                        <span class="destination-region">
+                            {{ destination.region.name }}
+                        </span>
+
+                        <h3>{{ destination.name }}</h3>
+
+                        <p>
+                            {{ destination.short_description }}
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p class="empty-state">
+                    Destinations will appear here soon.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

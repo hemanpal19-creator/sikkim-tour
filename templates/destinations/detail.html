@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}{{ destination.name }} | Sikkim Tour{% endblock %}
+
+{% block meta_description %}
+{{ destination.short_description }}
+{% endblock %}
+
+{% block content %}
+
+<!--
+    One reusable destination page.
+    Django replaces the destination information dynamically
+    depending on which slug the visitor opens.
+-->
+<section class="destination-detail">
+
+    <div class="container">
+
+        <p class="section-label">
+            {{ destination.region.name }}
+        </p>
+
+        <h1>{{ destination.name }}</h1>
+
+        <p class="destination-detail-intro">
+            {{ destination.short_description }}
+        </p>
+
+        {% if destination.hero_image %}
+            <div class="destination-detail-image">
+                <img
+                    src="{{ destination.hero_image.url }}"
+                    alt="{{ destination.name }}"
+                >
+            </div>
+        {% endif %}
+
+        <div class="destination-detail-content">
+
+            <div>
+                <p class="section-label">About the destination</p>
+                <h2>Discover {{ destination.name }}</h2>
+            </div>
+
+            <div>
+                <p>{{ destination.description }}</p>
+
+                {% if destination.best_time_to_visit %}
+                    <h3>Best time to visit</h3>
+                    <p>{{ destination.best_time_to_visit }}</p>
+                {% endif %}
+
+                {% if destination.how_to_reach %}
+                    <h3>How to reach</h3>
+                    <p>{{ destination.how_to_reach }}</p>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
