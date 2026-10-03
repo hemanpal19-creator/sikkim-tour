@@ -257,15 +257,15 @@ class AttractionAdmin(admin.ModelAdmin):
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
     """
-    Admin configuration for destination activities and experiences.
+    Admin configuration for destination activities.
     """
 
     list_display = (
         "name",
         "destination",
         "difficulty",
-        "duration",
         "is_active",
+        "created_at",
     )
 
     list_filter = (
@@ -345,6 +345,13 @@ class ActivityAdmin(admin.ModelAdmin):
                 ),
             },
         ),
+    )
+
+    # These fields are generated automatically by Django,
+    # so they can be displayed but not edited.
+    readonly_fields = (
+        "created_at",
+        "updated_at",
     )
 
 

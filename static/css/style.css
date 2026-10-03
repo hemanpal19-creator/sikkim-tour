@@ -1952,3 +1952,383 @@ p {
         height: 240px;
     }
 }
+
+/* =========================================================
+   ACTIVITY DETAIL PAGE
+   ========================================================= */
+
+.activity-detail {
+    background: var(--color-paper);
+}
+
+
+/* ---------- Activity Hero ---------- */
+
+.activity-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+
+    min-height: 620px;
+
+    background: var(--color-forest);
+    color: var(--color-white);
+}
+
+.activity-hero__image {
+    position: relative;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
+    background: var(--color-forest-dark);
+}
+
+.activity-hero__image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    animation:
+        activity-image-reveal 1100ms
+        cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+    transition: transform 900ms ease;
+}
+
+.activity-hero:hover .activity-hero__image img {
+    transform: scale(1.025);
+}
+
+
+/* ---------- Hero Content ---------- */
+
+.activity-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 5rem clamp(2rem, 6vw, 6rem);
+}
+
+.activity-hero__eyebrow {
+    margin-bottom: 1.25rem;
+
+    color: var(--color-gold-soft);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+
+    animation:
+        activity-content-reveal 850ms
+        150ms ease-out both;
+}
+
+.activity-hero__content h1 {
+    max-width: 650px;
+
+    margin-bottom: 1.75rem;
+
+    color: var(--color-white);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-weight: 400;
+
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+
+    animation:
+        activity-title-reveal 1000ms
+        250ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.activity-hero__description {
+    max-width: 580px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+
+    animation:
+        activity-content-reveal 850ms
+        400ms ease-out both;
+}
+
+
+/* ---------- Activity Content ---------- */
+
+.activity-content {
+    width: min(
+        calc(100% - 3rem),
+        var(--container-width)
+    );
+
+    margin-inline: auto;
+
+    padding-block: 8rem;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
+
+    gap: 7rem;
+
+    align-items: start;
+}
+
+.activity-content__main {
+    max-width: 760px;
+}
+
+.activity-content__main .section-eyebrow {
+    margin-bottom: 1rem;
+
+    color: var(--color-gold);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.activity-content__main h2 {
+    margin-bottom: 2rem;
+
+    color: var(--color-forest);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 400;
+
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.activity-content__description {
+    color: var(--color-muted);
+
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+
+/* ---------- Activity Information ---------- */
+
+.activity-info {
+    position: sticky;
+    top: 2rem;
+
+    padding: 2rem;
+
+    background: var(--color-cream);
+
+    border-top: 2px solid var(--color-gold);
+}
+
+.activity-info__item {
+    padding-block: 1.25rem;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.activity-info__item:first-child {
+    padding-top: 0;
+}
+
+.activity-info__item:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+}
+
+.activity-info__item span {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: var(--color-muted);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.activity-info__item strong {
+    display: block;
+
+    color: var(--color-forest);
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+.activity-info__item a {
+    color: var(--color-forest);
+
+    font-weight: 700;
+
+    transition: color var(--transition-fast);
+}
+
+.activity-info__item a:hover {
+    color: var(--color-gold);
+}
+
+
+/* ---------- Animations ---------- */
+
+@keyframes activity-image-reveal {
+
+    from {
+        opacity: 0;
+
+        clip-path: inset(0 100% 0 0);
+
+        transform: scale(1.06);
+    }
+
+    to {
+        opacity: 1;
+
+        clip-path: inset(0 0 0 0);
+
+        transform: scale(1);
+    }
+}
+
+@keyframes activity-title-reveal {
+
+    from {
+        opacity: 0;
+
+        transform: translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+}
+
+@keyframes activity-content-reveal {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+
+    .activity-hero {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+    }
+
+    .activity-hero__image {
+        min-height: 480px;
+    }
+
+    .activity-hero__content {
+        min-height: 430px;
+
+        padding: 4rem 1.5rem;
+    }
+
+    .activity-content {
+        grid-template-columns: 1fr;
+
+        gap: 3.5rem;
+
+        padding-block: 6rem;
+    }
+
+    .activity-content__main {
+        max-width: none;
+    }
+
+    .activity-info {
+        position: static;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .activity-hero__image {
+        min-height: 360px;
+    }
+
+    .activity-hero__content {
+        min-height: 390px;
+
+        padding: 3.5rem 1.25rem;
+    }
+
+    .activity-hero__content h1 {
+        font-size: clamp(3rem, 15vw, 4.5rem);
+    }
+
+    .activity-hero__description {
+        font-size: 0.95rem;
+    }
+
+    .activity-content {
+        width: min(
+            calc(100% - 2rem),
+            var(--container-width)
+        );
+
+        padding-block: 5rem;
+    }
+
+    .activity-content__main h2 {
+        font-size: 2.8rem;
+    }
+
+    .activity-info {
+        padding: 1.5rem;
+    }
+}
+
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .activity-hero__image img,
+    .activity-hero__content h1,
+    .activity-hero__eyebrow,
+    .activity-hero__description {
+        animation: none;
+    }
+
+    .activity-hero__image img {
+        transition: none;
+    }
+}

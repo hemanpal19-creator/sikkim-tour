@@ -5,7 +5,6 @@ from . import views
 
 urlpatterns = [
     # Attraction listing page.
-    # Example: /destinations/attractions/
     path(
         "attractions/",
         views.attraction_list,
@@ -13,11 +12,26 @@ urlpatterns = [
     ),
 
     # Attraction detail page.
-    # Example: /destinations/attractions/mg-marg/
     path(
         "attractions/<slug:slug>/",
         views.attraction_detail,
         name="attraction_detail",
+    ),
+
+    # Activity listing page.
+    # Example: /destinations/activities/
+    path(
+        "activities/",
+        views.activity_list,
+        name="activity_list",
+    ),
+
+    # Activity detail page.
+    # Example: /destinations/activities/trekking/
+    path(
+        "activities/<slug:slug>/",
+        views.activity_detail,
+        name="activity_detail",
     ),
 
     # Destination detail page.

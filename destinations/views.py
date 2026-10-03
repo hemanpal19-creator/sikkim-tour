@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 
-from .models import Destination, Attraction
+from .models import Destination, Attraction, Activity
 
 
 def destination_detail(request, slug):
@@ -78,6 +78,51 @@ def attraction_list(request):
         },
     )
     
+def activity_detail(request, slug):
+    """
+    Displays one activity using its unique slug.
+
+    Example:
+    /destinations/activities/trekking/
+    """
+
+    # Find the requested active activity by its unique slug.
+    activity = get_object_or_404(
+        Activity,
+        slug=slug,
+        is_active=True,
+    )
+
+    # Send the activity to the reusable detail template.
+    return render(
+        request,
+        "destinations/activity_detail.html",
+        {
+            "activity": activity,
+        },
+    )
+
+
+def activity_list(request):
+    """
+    Displays all active activities.
+
+    Activities are loaded from the database, so new activities
+    added through Django Admin automatically appear here.
+    """
+
+    # Get all active activities and keep them alphabetically ordered.
+    activities = Activity.objects.filter(
+        is_active=True
+    ).order_by("name")
+
+    return render(
+        request,
+        "destinations/activity_list.html",
+        {
+            "activities": activities,
+        },
+    )
     
 # Why?
 

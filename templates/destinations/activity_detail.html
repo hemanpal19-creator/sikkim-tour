@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ activity.name }} | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="activity-detail">
+
+    <section class="activity-hero">
+
+        <div class="activity-hero__image">
+
+            {% if activity.image %}
+                <img
+                    src="{{ activity.image.url }}"
+                    alt="{{ activity.name }}"
+                >
+            {% endif %}
+
+        </div>
+
+        <div class="activity-hero__content">
+
+            <p class="activity-hero__eyebrow">
+                {{ activity.destination.name }}
+            </p>
+
+            <h1>
+                {{ activity.name }}
+            </h1>
+
+            <p class="activity-hero__description">
+                {{ activity.short_description }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="activity-content">
+
+        <div class="activity-content__main">
+
+            <p class="section-eyebrow">
+                Experience
+            </p>
+
+            <h2>
+                About {{ activity.name }}
+            </h2>
+
+            <div class="activity-content__description">
+                {{ activity.description|linebreaks }}
+            </div>
+
+        </div>
+
+
+        <aside class="activity-info">
+
+            {% if activity.duration %}
+                <div class="activity-info__item">
+                    <span>Duration</span>
+                    <strong>
+                        {{ activity.duration }}
+                    </strong>
+                </div>
+            {% endif %}
+
+            {% if activity.best_time %}
+                <div class="activity-info__item">
+                    <span>Best time</span>
+                    <strong>
+                        {{ activity.best_time }}
+                    </strong>
+                </div>
+            {% endif %}
+
+            {% if activity.difficulty %}
+                <div class="activity-info__item">
+                    <span>Difficulty</span>
+                    <strong>
+                        {{ activity.difficulty }}
+                    </strong>
+                </div>
+            {% endif %}
+
+            <div class="activity-info__item">
+                <span>Destination</span>
+
+                <a
+                    href="{% url 'destination_detail' activity.destination.slug %}"
+                >
+                    {{ activity.destination.name }}
+                </a>
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+{% endblock %}

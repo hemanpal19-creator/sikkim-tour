@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Activities | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="activities-page">
+
+    <section class="activities-header">
+
+        <p class="section-eyebrow">
+            Experience Sikkim
+        </p>
+
+        <h1>
+            Experiences beyond the ordinary
+        </h1>
+
+        <p>
+            Discover the activities that bring Sikkim's landscapes,
+            culture and mountains to life.
+        </p>
+
+    </section>
+
+
+    <section class="activities-grid">
+
+        {% for activity in activities %}
+
+            <article class="activity-card">
+
+                {% if activity.image %}
+                    <img
+                        src="{{ activity.image.url }}"
+                        alt="{{ activity.name }}"
+                    >
+                {% endif %}
+
+                <div class="activity-card__content">
+
+                    <span>
+                        {{ activity.destination.name }}
+                    </span>
+
+                    <h2>
+                        {{ activity.name }}
+                    </h2>
+
+                    <p>
+                        {{ activity.short_description }}
+                    </p>
+
+                    {% if activity.duration %}
+                        <small>
+                            {{ activity.duration }}
+                        </small>
+                    {% endif %}
+
+                    <a
+                        href="{% url 'activity_detail' activity.slug %}"
+                    >
+                        Explore experience →
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                No activities are available yet.
+            </p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+{% endblock %}
