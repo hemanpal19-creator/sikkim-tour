@@ -1731,3 +1731,224 @@ p {
         transition: none;
     }
 }
+
+/* =========================================================
+   ATTRACTIONS LIST PAGE
+   ========================================================= */
+
+.attractions-page {
+    background: var(--color-paper);
+    padding-bottom: 7rem;
+}
+
+
+/* ---------- Page Header ---------- */
+
+.attractions-header {
+    width: min(
+        calc(100% - 3rem),
+        var(--container-width)
+    );
+
+    margin-inline: auto;
+
+    padding-block: 8rem 5rem;
+
+    max-width: 900px;
+}
+
+.attractions-header .section-eyebrow {
+    margin-bottom: 1rem;
+
+    color: var(--color-gold);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.attractions-header h1 {
+    margin-bottom: 1.5rem;
+
+    color: var(--color-forest);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(3.2rem, 6vw, 6rem);
+    font-weight: 400;
+
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+}
+
+.attractions-header > p:last-child {
+    max-width: 650px;
+
+    color: var(--color-muted);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* ---------- Attractions Grid ---------- */
+
+.attractions-grid {
+    width: min(
+        calc(100% - 3rem),
+        var(--container-width)
+    );
+
+    margin-inline: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1.5rem;
+}
+
+
+/* ---------- Attraction Card ---------- */
+
+.attraction-card {
+    overflow: hidden;
+
+    background: var(--color-white);
+
+    border: 1px solid var(--color-border);
+
+    transition:
+        transform 500ms ease,
+        box-shadow 500ms ease;
+}
+
+.attraction-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+
+.attraction-card > img {
+    width: 100%;
+    height: 280px;
+
+    display: block;
+
+    object-fit: cover;
+
+    background: var(--color-forest-dark);
+
+    transition: transform 700ms ease;
+}
+
+.attraction-card:hover > img {
+    transform: scale(1.035);
+}
+
+
+/* ---------- Card Content ---------- */
+
+.attraction-card__content {
+    padding: 1.75rem;
+}
+
+.attraction-card__content > span {
+    display: block;
+
+    margin-bottom: 0.75rem;
+
+    color: var(--color-gold);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.attraction-card__content h2 {
+    margin-bottom: 0.9rem;
+
+    color: var(--color-forest);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 2rem;
+    font-weight: 400;
+
+    line-height: 1.05;
+}
+
+.attraction-card__content p {
+    margin-bottom: 1.5rem;
+
+    color: var(--color-muted);
+
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.attraction-card__content a {
+    color: var(--color-forest);
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    transition:
+        color var(--transition-fast);
+}
+
+.attraction-card__content a:hover {
+    color: var(--color-gold);
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+
+    .attractions-header {
+        padding-block: 6rem 4rem;
+    }
+
+    .attractions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 560px) {
+
+    .attractions-header {
+        width: min(
+            calc(100% - 2rem),
+            var(--container-width)
+        );
+
+        padding-block: 5rem 3rem;
+    }
+
+    .attractions-header h1 {
+        font-size: clamp(3rem, 14vw, 4.5rem);
+    }
+
+    .attractions-grid {
+        width: min(
+            calc(100% - 2rem),
+            var(--container-width)
+        );
+
+        grid-template-columns: 1fr;
+    }
+
+    .attraction-card > img {
+        height: 240px;
+    }
+}

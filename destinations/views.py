@@ -54,6 +54,30 @@ def attraction_detail(request, slug):
         },
     )
     
+def attraction_list(request):
+    """
+    Displays all active attractions.
+
+    The attractions are taken directly from the database,
+    so whenever we add a new attraction through Django Admin,
+    it can automatically appear on this page.
+    """
+
+    # Get only attractions that are currently active.
+    # Ordering by name keeps the listing organized.
+    attractions = Attraction.objects.filter(
+        is_active=True
+    ).order_by("name")
+
+    # Send the attractions to the listing template.
+    return render(
+        request,
+        "destinations/attraction_list.html",
+        {
+            "attractions": attractions,
+        },
+    )
+    
     
 # Why?
 

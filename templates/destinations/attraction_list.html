@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Attractions | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="attractions-page">
+
+    <section class="attractions-header">
+
+        <p class="section-eyebrow">
+            Explore Sikkim
+        </p>
+
+        <h1>
+            Places worth discovering
+        </h1>
+
+        <p>
+            Explore the remarkable places, landmarks and experiences
+            that make Sikkim unforgettable.
+        </p>
+
+    </section>
+
+
+    <section class="attractions-grid">
+
+        {% for attraction in attractions %}
+
+            <article class="attraction-card">
+
+                {% if attraction.image %}
+                    <img
+                        src="{{ attraction.image.url }}"
+                        alt="{{ attraction.name }}"
+                    >
+                {% endif %}
+
+                <div class="attraction-card__content">
+
+                    <span>
+                        {{ attraction.destination.name }}
+                    </span>
+
+                    <h2>
+                        {{ attraction.name }}
+                    </h2>
+
+                    <p>
+                        {{ attraction.short_description }}
+                    </p>
+
+                    <a
+                        href="{% url 'attraction_detail' attraction.slug %}"
+                    >
+                        Discover attraction →
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                No attractions are available yet.
+            </p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+{% endblock %}
