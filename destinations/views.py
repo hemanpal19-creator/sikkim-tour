@@ -1,18 +1,25 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Destination
 
-# Create your views here.
+from .models import Destination, Attraction
+
 
 def destination_detail(request, slug):
-    # Find the destination using its unique slug.
-    # If the slug does not exist, Django automatically shows a 404 page.
+    """
+    Displays one destination using its unique slug.
+
+    Example:
+    /destinations/gangtok/
+    """
+
+    # Find the requested destination.
+    # If it doesn't exist or is inactive, Django returns a 404 page.
     destination = get_object_or_404(
         Destination,
         slug=slug,
         is_active=True,
     )
 
-    # Send the selected destination to one reusable template.
+    # Send the destination object to the reusable detail template.
     return render(
         request,
         "destinations/detail.html",
@@ -20,7 +27,32 @@ def destination_detail(request, slug):
             "destination": destination,
         },
     )
-    
+
+
+def attraction_detail(request, slug):
+    """
+    Displays one attraction using its unique slug.
+
+    Example:
+    /attractions/mg-marg/
+    """
+
+    # Find the attraction using its unique slug.
+    # Only active attractions are publicly accessible.
+    attraction = get_object_or_404(
+        Attraction,
+        slug=slug,
+        is_active=True,
+    )
+
+    # Send the attraction object to its reusable detail template.
+    return render(
+        request,
+        "destinations/attraction_detail.html",
+        {
+            "attraction": attraction,
+        },
+    )
     
     
 # Why?

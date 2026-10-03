@@ -1274,3 +1274,460 @@ p {
         transition: none;
     }
 }
+
+/* =========================================================
+   ATTRACTION DETAIL PAGE
+   ========================================================= */
+
+/*
+    Attraction pages use a slightly different composition
+    from destination pages.
+
+    The destination page is information-heavy.
+    The attraction page uses a more editorial hero
+    followed by practical visitor information.
+*/
+
+.attraction-detail {
+    background: var(--color-paper);
+}
+
+
+/* ---------- Attraction Hero ---------- */
+
+.attraction-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+
+    min-height: 620px;
+
+    background: var(--color-forest);
+    color: var(--color-white);
+}
+
+
+/*
+    The image occupies the entire left side of the hero.
+    overflow:hidden prevents the image animation from
+    escaping outside its area.
+*/
+.attraction-hero__image {
+    position: relative;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
+    background: var(--color-forest-dark);
+}
+
+
+/*
+    Only animate the image when an image actually exists.
+    The gentle scale creates a premium travel-editorial feel.
+*/
+.attraction-hero__image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    animation:
+        attraction-image-reveal 1100ms
+        cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+    transition: transform 900ms ease;
+}
+
+
+/*
+    A subtle hover movement gives desktop users
+    a little visual feedback without becoming flashy.
+*/
+.attraction-hero:hover .attraction-hero__image img {
+    transform: scale(1.025);
+}
+
+
+/* ---------- Hero Content ---------- */
+
+.attraction-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 5rem clamp(2rem, 6vw, 6rem);
+
+    position: relative;
+}
+
+
+/*
+    Small destination label above the attraction name.
+*/
+.attraction-hero__eyebrow {
+    margin-bottom: 1.25rem;
+
+    color: var(--color-gold-soft);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+
+    animation:
+        attraction-content-reveal 850ms
+        150ms ease-out both;
+}
+
+
+.attraction-hero__content h1 {
+    max-width: 650px;
+
+    margin-bottom: 1.75rem;
+
+    color: var(--color-white);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-weight: 400;
+
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+
+    animation:
+        attraction-title-reveal 1000ms
+        250ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+
+.attraction-hero__description {
+    max-width: 580px;
+
+    margin-bottom: 0;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+
+    animation:
+        attraction-content-reveal 850ms
+        400ms ease-out both;
+}
+
+
+/* ---------- Attraction Content ---------- */
+
+.attraction-content {
+    width: min(
+        calc(100% - 3rem),
+        var(--container-width)
+    );
+
+    margin-inline: auto;
+
+    padding-block: 8rem;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
+
+    gap: 7rem;
+
+    align-items: start;
+}
+
+
+.attraction-content__main {
+    max-width: 760px;
+}
+
+
+.attraction-content__main .section-eyebrow {
+    margin-bottom: 1rem;
+
+    color: var(--color-gold);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+
+.attraction-content__main h2 {
+    margin-bottom: 2rem;
+
+    color: var(--color-forest);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 400;
+
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+
+.attraction-content__description {
+    color: var(--color-muted);
+
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+
+/* ---------- Visitor Information ---------- */
+
+.attraction-info {
+    position: sticky;
+    top: 2rem;
+
+    padding: 2rem;
+
+    background: var(--color-cream);
+
+    border-top: 2px solid var(--color-gold);
+}
+
+
+.attraction-info__item {
+    padding-block: 1.25rem;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+
+.attraction-info__item:first-child {
+    padding-top: 0;
+}
+
+
+.attraction-info__item:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+}
+
+
+.attraction-info__item span {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: var(--color-muted);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+
+.attraction-info__item strong {
+    display: block;
+
+    color: var(--color-forest);
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+.attraction-info__item a {
+    color: var(--color-forest);
+
+    font-weight: 700;
+
+    transition:
+        color var(--transition-fast);
+}
+
+
+.attraction-info__item a:hover {
+    color: var(--color-gold);
+}
+
+
+/* ---------- Attraction Animations ---------- */
+
+/*
+    Image enters through a soft horizontal clip.
+    This is intentionally different from the homepage
+    upward reveal animation.
+*/
+@keyframes attraction-image-reveal {
+
+    from {
+        opacity: 0;
+
+        clip-path: inset(
+            0 100% 0 0
+        );
+
+        transform: scale(1.06);
+    }
+
+    to {
+        opacity: 1;
+
+        clip-path: inset(
+            0 0 0 0
+        );
+
+        transform: scale(1);
+    }
+}
+
+
+/*
+    Main title reveals horizontally instead of
+    simply sliding upward.
+*/
+@keyframes attraction-title-reveal {
+
+    from {
+        opacity: 0;
+
+        transform: translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+}
+
+
+/*
+    Smaller content uses a softer fade.
+*/
+@keyframes attraction-content-reveal {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- Attraction Responsive ---------- */
+
+@media (max-width: 900px) {
+
+    .attraction-hero {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+    }
+
+
+    .attraction-hero__image {
+        min-height: 480px;
+    }
+
+
+    .attraction-hero__content {
+        min-height: 430px;
+
+        padding: 4rem 1.5rem;
+    }
+
+
+    .attraction-content {
+        grid-template-columns: 1fr;
+
+        gap: 3.5rem;
+
+        padding-block: 6rem;
+    }
+
+
+    .attraction-content__main {
+        max-width: none;
+    }
+
+
+    .attraction-info {
+        position: static;
+    }
+}
+
+
+@media (max-width: 560px) {
+
+    .attraction-hero__image {
+        min-height: 360px;
+    }
+
+
+    .attraction-hero__content {
+        min-height: 390px;
+
+        padding: 3.5rem 1.25rem;
+    }
+
+
+    .attraction-hero__content h1 {
+        font-size: clamp(3rem, 15vw, 4.5rem);
+    }
+
+
+    .attraction-hero__description {
+        font-size: 0.95rem;
+    }
+
+
+    .attraction-content {
+        width: min(
+            calc(100% - 2rem),
+            var(--container-width)
+        );
+
+        padding-block: 5rem;
+    }
+
+
+    .attraction-content__main h2 {
+        font-size: 2.8rem;
+    }
+
+
+    .attraction-info {
+        padding: 1.5rem;
+    }
+}
+
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .attraction-hero__image img,
+    .attraction-hero__content h1,
+    .attraction-hero__eyebrow,
+    .attraction-hero__description {
+        animation: none;
+    }
+
+    .attraction-hero__image img {
+        transition: none;
+    }
+}

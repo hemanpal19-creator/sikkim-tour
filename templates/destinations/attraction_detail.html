@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ attraction.name }} | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="attraction-detail">
+
+    <!--
+        HERO SECTION
+        Displays the main attraction image and basic information.
+
+        The same template works for every attraction because
+        Django replaces {{ attraction.name }}, {{ attraction.image }},
+        etc. with data from the database.
+    -->
+    <section class="attraction-hero">
+
+        <div class="attraction-hero__image">
+
+            {% if attraction.image %}
+                <!--
+                    Only display the image if one has been uploaded
+                    through Django Admin.
+                -->
+                <img
+                    src="{{ attraction.image.url }}"
+                    alt="{{ attraction.name }}"
+                >
+            {% endif %}
+
+        </div>
+
+        <div class="attraction-hero__content">
+
+            <!-- Shows the destination this attraction belongs to. -->
+            <p class="attraction-hero__eyebrow">
+                {{ attraction.destination.name }}
+            </p>
+
+            <!-- Main attraction heading. -->
+            <h1>
+                {{ attraction.name }}
+            </h1>
+
+            <!-- Short introduction from the database. -->
+            <p class="attraction-hero__description">
+                {{ attraction.short_description }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!--
+        MAIN CONTENT
+        Displays the full attraction description.
+    -->
+    <section class="attraction-content">
+
+        <div class="attraction-content__main">
+
+            <p class="section-eyebrow">
+                Discover
+            </p>
+
+            <h2>
+                About {{ attraction.name }}
+            </h2>
+
+            <!--
+                The full description is stored in Django Admin,
+                so editors can change the content without editing HTML.
+            -->
+            <div class="attraction-content__description">
+                {{ attraction.description|linebreaks }}
+            </div>
+
+        </div>
+
+
+        <!--
+            VISITOR INFORMATION
+            Only display this section when information exists.
+        -->
+        <aside class="attraction-info">
+
+            {% if attraction.best_time_to_visit %}
+                <div class="attraction-info__item">
+                    <span>Best time to visit</span>
+                    <strong>
+                        {{ attraction.best_time_to_visit }}
+                    </strong>
+                </div>
+            {% endif %}
+
+
+            {% if attraction.entry_fee %}
+                <div class="attraction-info__item">
+                    <span>Entry fee</span>
+                    <strong>
+                        {{ attraction.entry_fee }}
+                    </strong>
+                </div>
+            {% endif %}
+
+
+            <!--
+                Link back to the destination containing this attraction.
+            -->
+            <div class="attraction-info__item">
+                <span>Destination</span>
+
+                <a
+                    href="{% url 'destination_detail' attraction.destination.slug %}"
+                >
+                    {{ attraction.destination.name }}
+                </a>
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+{% endblock %}
