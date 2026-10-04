@@ -8,80 +8,603 @@
 
 {% block content %}
 
-<!--
-    One reusable destination page.
-    Django replaces the destination information dynamically
-    depending on which slug the visitor opens.
--->
-<section class="destination-detail">
+<main class="destination-page">
 
-    <div class="container">
-
-        <p class="section-label reveal reveal-horizontal">
-            {{ destination.region.name }}
-        </p>
-
-        <h1 class="reveal reveal-clip">
-            {{ destination.name }}
-        </h1>
-
-        <p class="destination-detail-intro reveal reveal-fade">
-            {{ destination.short_description }}
-        </p>
+    <!-- =====================================================
+         DESTINATION HERO
+         The destination image becomes the visual identity
+         of the entire page.
+         ===================================================== -->
+    <section class="destination-hero">
 
         {% if destination.hero_image %}
-            <div class="destination-detail-image reveal reveal-clip">
+            <div class="destination-hero__media">
                 <img
                     src="{{ destination.hero_image.url }}"
-                    alt="{{ destination.name }}"
+                    alt="{{ destination.name }}, Sikkim"
                 >
             </div>
         {% endif %}
 
-        <div class="destination-detail-content">
+        <div class="destination-hero__overlay"></div>
 
-            <div>
-                <p class="section-label reveal reveal-horizontal">
-                    About the destination
-                </p>
+        <div class="destination-hero__content container">
 
-                <h2 class="reveal reveal-clip">
-                    Discover {{ destination.name }}
-                </h2>
+            <div class="destination-hero__top reveal reveal-horizontal">
+
+                <a href="{% url 'destination_list' %}"
+                   class="destination-breadcrumb">
+                    Sikkim / Destinations
+                </a>
+
+                <span class="destination-region">
+                    {{ destination.region.name }}
+                </span>
+
             </div>
 
-            <div>
+            <div class="destination-hero__main">
 
-                <p class="reveal reveal-fade">
-                    {{ destination.description }}
+                <div class="destination-hero__coordinates reveal reveal-fade">
+
+                    {% if destination.latitude and destination.longitude %}
+                        <span>
+                            {{ destination.latitude }}° N
+                        </span>
+
+                        <span>
+                            {{ destination.longitude }}° E
+                        </span>
+                    {% endif %}
+
+                </div>
+
+                <h1 class="destination-hero__title reveal reveal-clip">
+                    {{ destination.name }}
+                </h1>
+
+                <p class="destination-hero__description reveal reveal-fade">
+                    {{ destination.short_description }}
                 </p>
 
-                {% if destination.best_time_to_visit %}
-                    <h3 class="reveal reveal-horizontal">
-                        Best time to visit
-                    </h3>
+                <div class="destination-hero__actions reveal reveal-fade">
 
-                    <p class="reveal reveal-fade">
-                        {{ destination.best_time_to_visit }}
-                    </p>
+                    <a href="{% url 'enquiry_create' %}"
+                       class="btn destination-btn destination-btn--light">
+                        Plan this journey
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                    <a href="#discover"
+                       class="destination-hero__link">
+                        Discover {{ destination.name }}
+                        <span aria-hidden="true">↓</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="destination-hero__bottom">
+
+                <span class="destination-scroll">
+                    Scroll to explore
+                </span>
+
+                <span class="destination-scroll-line"
+                      aria-hidden="true"></span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DESTINATION FACTS
+         ===================================================== -->
+    <section class="destination-facts" id="discover">
+
+        <div class="container">
+
+            <div class="destination-facts__grid">
+
+                <div class="destination-fact reveal reveal-card">
+                    <span>Region</span>
+                    <strong>{{ destination.region.name }}</strong>
+                </div>
+
+                {% if destination.best_time_to_visit %}
+                    <div class="destination-fact reveal reveal-card">
+                        <span>Best time</span>
+                        <strong>{{ destination.best_time_to_visit }}</strong>
+                    </div>
                 {% endif %}
 
-                {% if destination.how_to_reach %}
-                    <h3 class="reveal reveal-horizontal">
-                        How to reach
-                    </h3>
+                {% if destination.latitude and destination.longitude %}
+                    <div class="destination-fact reveal reveal-card">
+                        <span>Coordinates</span>
+                        <strong>
+                            {{ destination.latitude }}° N
+                            ·
+                            {{ destination.longitude }}° E
+                        </strong>
+                    </div>
+                {% endif %}
 
-                    <p class="reveal reveal-fade">
-                        {{ destination.how_to_reach }}
+                <div class="destination-fact destination-fact--accent reveal reveal-card">
+                    <span>Discover</span>
+                    <strong>Sikkim, your way</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DESTINATION STORY
+         ===================================================== -->
+    <section class="destination-story">
+
+        <div class="container">
+
+            <div class="destination-story__grid">
+
+                <div class="destination-story__intro reveal reveal-horizontal">
+
+                    <p class="section-label">
+                        The place
                     </p>
+
+                    <h2>
+                        A closer look at
+                        {{ destination.name }}.
+                    </h2>
+
+                </div>
+
+                <div class="destination-story__body reveal reveal-fade">
+
+                    {% if destination.description %}
+                        {{ destination.description|linebreaks }}
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ATTRACTIONS
+         ===================================================== -->
+    {% if destination.attractions.all %}
+
+        <section class="destination-discover destination-discover--light">
+
+            <div class="container">
+
+                <div class="destination-section-heading reveal reveal-horizontal">
+
+                    <div>
+                        <p class="section-label">
+                            Places to see
+                        </p>
+
+                        <h2>
+                            Don't miss
+                            these places.
+                        </h2>
+                    </div>
+
+                    <p>
+                        Explore the landmarks, viewpoints and cultural
+                        places that give {{ destination.name }} its character.
+                    </p>
+
+                </div>
+
+
+                <div class="destination-attractions">
+
+                    {% for attraction in destination.attractions.all|slice:":6" %}
+
+                        <article class="destination-attraction reveal reveal-card">
+
+                            <div class="destination-attraction__number">
+                                {% if forloop.counter < 10 %}
+                                    0{{ forloop.counter }}
+                                {% else %}
+                                    {{ forloop.counter }}
+                                {% endif %}
+                            </div>
+
+                            <div class="destination-attraction__content">
+
+                                <h3>
+                                    {{ attraction.name }}
+                                </h3>
+
+                                {% if attraction.short_description %}
+                                    <p>
+                                        {{ attraction.short_description }}
+                                    </p>
+                                {% endif %}
+
+                                <a href="{% url 'attraction_detail' attraction.slug %}">
+                                    Explore place
+                                    <span aria-hidden="true">↗</span>
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <div class="destination-section-action reveal reveal-fade">
+
+                    <a href="{% url 'attraction_list' %}"
+                       class="intro-link">
+                        Explore all attractions
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    {% endif %}
+
+<!-- JOURNEYS -->
+{% if journeys %}
+    <section class="destination-journeys">
+        <div class="container">
+
+            <div class="destination-section-heading reveal reveal-horizontal">
+                <div>
+                    <p class="section-label">Journeys from {{ destination.name }}</p>
+                    <h2>Travel it your way.</h2>
+                </div>
+
+                <p>
+                    Thoughtfully planned journeys that make it easier
+                    to experience the best of {{ destination.name }}.
+                </p>
+            </div>
+
+            <div class="destination-journeys__grid">
+
+                {% for journey in journeys %}
+                    <article class="destination-journey reveal reveal-card">
+
+                        {% if journey.image %}
+                            <a href="{% url 'tour_detail' journey.slug %}"
+                               class="destination-journey__image">
+
+                                <img
+                                    src="{{ journey.image.url }}"
+                                    alt="{{ journey.name }}"
+                                    loading="lazy"
+                                >
+
+                                <span class="destination-journey__arrow"
+                                      aria-hidden="true">↗</span>
+                            </a>
+                        {% endif %}
+
+                        <div class="destination-journey__content">
+
+                            <span class="destination-journey__type">
+                                Journey
+                            </span>
+
+                            <h3>{{ journey.name }}</h3>
+
+                            {% if journey.short_description %}
+                                <p>{{ journey.short_description }}</p>
+                            {% endif %}
+
+                            <a href="{% url 'tour_detail' journey.slug %}">
+                                Explore journey
+                                <span aria-hidden="true">→</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+                {% endfor %}
+
+            </div>
+
+            <div class="destination-section-action reveal reveal-fade">
+                <a href="{% url 'tour_list' %}" class="intro-link">
+                    Explore all journeys
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+{% endif %}
+
+<!-- STAYS -->
+{% if stays %}
+    <section class="destination-stays">
+        <div class="container">
+
+            <div class="destination-section-heading destination-section-heading--dark reveal reveal-horizontal">
+                <div>
+                    <p class="section-label">Stay in {{ destination.name }}</p>
+                    <h2>Places to stay.</h2>
+                </div>
+
+                <p>
+                    Find comfortable stays that put you closer to
+                    the landscapes and experiences of {{ destination.name }}.
+                </p>
+            </div>
+
+            <div class="destination-stays__grid">
+
+                {% for stay in stays %}
+                    <article class="destination-stay reveal reveal-card">
+
+                        {% if stay.image %}
+                            <a href="{% url 'stay_detail' stay.slug %}"
+                               class="destination-stay__image">
+
+                                <img
+                                    src="{{ stay.image.url }}"
+                                    alt="{{ stay.name }}"
+                                    loading="lazy"
+                                >
+
+                                <span class="destination-stay__arrow"
+                                      aria-hidden="true">↗</span>
+                            </a>
+                        {% endif %}
+
+                        <div class="destination-stay__content">
+
+                            <div class="destination-stay__meta">
+                                <span>{{ stay.stay_type }}</span>
+
+                                {% if stay.price_range %}
+                                    <span>{{ stay.price_range }}</span>
+                                {% endif %}
+                            </div>
+
+                            <h3>{{ stay.name }}</h3>
+
+                            {% if stay.short_description %}
+                                <p>{{ stay.short_description }}</p>
+                            {% endif %}
+
+                            <a href="{% url 'stay_detail' stay.slug %}">
+                                View stay
+                                <span aria-hidden="true">→</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+                {% endfor %}
+
+            </div>
+
+            <div class="destination-section-action reveal reveal-fade">
+                <a href="{% url 'stay_list' %}" class="intro-link">
+                    Explore all stays
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+{% endif %}
+
+
+    <!-- =====================================================
+         EXPERIENCES
+         ===================================================== -->
+    {% if destination.activities.all %}
+
+        <section class="destination-experiences">
+
+            <div class="container">
+
+                <div class="destination-section-heading destination-section-heading--dark reveal reveal-horizontal">
+
+                    <div>
+                        <p class="section-label">
+                            Experience {{ destination.name }}
+                        </p>
+
+                        <h2>
+                            See the mountains
+                            differently.
+                        </h2>
+                    </div>
+
+                    <p>
+                        Choose experiences that turn a visit into
+                        a story worth remembering.
+                    </p>
+
+                </div>
+
+
+                <div class="destination-experiences__grid">
+
+                    {% for activity in destination.activities.all|slice:":4" %}
+
+                        <article class="destination-experience reveal reveal-card">
+
+                            {% if activity.image %}
+                                <a href="{% url 'activity_detail' activity.slug %}"
+                                   class="destination-experience__image">
+
+                                    <img
+                                        src="{{ activity.image.url }}"
+                                        alt="{{ activity.name }}"
+                                        loading="lazy"
+                                    >
+
+                                </a>
+                            {% endif %}
+
+                            <div class="destination-experience__content">
+
+                                <span>
+                                    Experience
+                                </span>
+
+                                <h3>
+                                    {{ activity.name }}
+                                </h3>
+
+                                {% if activity.short_description %}
+                                    <p>
+                                        {{ activity.short_description }}
+                                    </p>
+                                {% endif %}
+
+                                <a href="{% url 'activity_detail' activity.slug %}">
+                                    Explore experience
+                                    <span aria-hidden="true">→</span>
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+    {% endif %}
+
+
+    <!-- =====================================================
+         BEST TIME + HOW TO REACH
+         ===================================================== -->
+    <section class="destination-practical">
+
+        <div class="container">
+
+            <div class="destination-practical__grid">
+
+                {% if destination.best_time_to_visit %}
+
+                    <div class="destination-practical__item reveal reveal-horizontal">
+
+                        <p class="section-label">
+                            When to go
+                        </p>
+
+                        <h2>
+                            The best time
+                            to visit.
+                        </h2>
+
+                        <p>
+                            {{ destination.best_time_to_visit }}
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+
+                {% if destination.how_to_reach %}
+
+                    <div class="destination-practical__item reveal reveal-fade">
+
+                        <p class="section-label">
+                            Getting here
+                        </p>
+
+                        <h2>
+                            How to reach
+                            {{ destination.name }}.
+                        </h2>
+
+                        <p>
+                            {{ destination.how_to_reach }}
+                        </p>
+
+                    </div>
+
                 {% endif %}
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
+
+    <!-- =====================================================
+         FINAL CTA
+         ===================================================== -->
+    <section class="destination-final-cta">
+
+        {% if destination.hero_image %}
+            <div class="destination-final-cta__image">
+                <img
+                    src="{{ destination.hero_image.url }}"
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                >
+            </div>
+        {% endif %}
+
+        <div class="destination-final-cta__overlay"></div>
+
+        <div class="container destination-final-cta__content">
+
+            <p class="section-label reveal reveal-horizontal">
+                Your Sikkim story
+            </p>
+
+            <h2 class="reveal reveal-clip">
+                Ready to discover
+                {{ destination.name }}?
+            </h2>
+
+            <p class="reveal reveal-fade">
+                Tell us what kind of journey you have in mind
+                and we'll help shape it around you.
+            </p>
+
+            <a href="{% url 'enquiry_create' %}"
+               class="btn destination-btn destination-btn--light reveal reveal-fade">
+                Plan my journey
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
 
 {% endblock %}

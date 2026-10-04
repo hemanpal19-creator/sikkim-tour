@@ -1,6 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 
 from .models import Destination, Attraction, Activity
+from tours.models import Tour
+from stays.models import Stay
+
 
 def destination_list(request):
     """
@@ -25,27 +28,40 @@ def destination_list(request):
     )
 
 def destination_detail(request, slug):
-    """
-    Displays one destination using its unique slug.
-
-    Example:
-    /destinations/gangtok/
-    """
-
-    # Find the requested destination.
-    # If it doesn't exist or is inactive, Django returns a 404 page.
+    # Find the requested active destination.
     destination = get_object_or_404(
         Destination,
         slug=slug,
         is_active=True,
     )
 
-    # Send the destination object to the reusable detail template.
+    # Load journeys connected to this destination.
+    journeys = (
+        Tour.objects
+        .filter(
+            destinations=destination,
+            is_active=True,
+        )
+        .order_by("-featured", "name")[:4]
+    )
+
+    # Load stays located in this destination.
+    stays = (
+        Stay.objects
+        .filter(
+            destination=destination,
+            is_active=True,
+        )
+        .order_by("-featured", "name")[:4]
+    )
+
     return render(
         request,
         "destinations/detail.html",
         {
             "destination": destination,
+            "journeys": journeys,
+            "stays": stays,
         },
     )
 

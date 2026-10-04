@@ -127,14 +127,41 @@ button {
 /* ---------- Site Header ---------- */
 
 .site-header {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 1000;
 
     width: 100%;
 
-    background: var(--color-paper);
-    border-bottom: 1px solid var(--color-border);
+    /* Transparent glass effect over the destination hero */
+    background: rgba(18, 38, 31, 0.28);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+
+    /* Creates the soft blurred-glass appearance */
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+
+    /* Keeps the header visually separated from the image */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
 }
+
+/* White navigation over destination hero */
+.site-header .site-logo,
+.site-header .site-nav a {
+    color: #ffffff;
+}
+
+.site-header .site-nav a:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+
+
+
+
+
 
 .site-nav {
     width: min(
@@ -4837,5 +4864,1496 @@ p {
 
     .journey-cta__background {
         background-position: 65% center;
+    }
+}
+
+/* =========================================================
+   PREMIUM DESTINATION DETAIL PAGE
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. HERO
+   --------------------------------------------------------- */
+
+.destination-page {
+    background: #f7f5ef;
+    color: #1d3028;
+}
+
+.destination-hero {
+    position: relative;
+    min-height: calc(100svh - 88px);
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    background: #172b24;
+    color: #ffffff;
+}
+
+.destination-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.destination-hero__media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+
+    transform: scale(1.02);
+
+    animation: destinationHeroZoom 14s ease-out forwards;
+}
+
+@keyframes destinationHeroZoom {
+    from {
+        transform: scale(1.02);
+    }
+
+    to {
+        transform: scale(1.07);
+    }
+}
+
+
+/*
+    Layered gradient rather than a simple black overlay.
+
+    This keeps the photograph visible while making the
+    typography readable.
+*/
+
+.destination-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(9, 27, 21, 0.82) 0%,
+            rgba(9, 27, 21, 0.58) 38%,
+            rgba(9, 27, 21, 0.18) 72%,
+            rgba(9, 27, 21, 0.28) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(8, 23, 18, 0.72) 0%,
+            rgba(8, 23, 18, 0.05) 55%,
+            rgba(8, 23, 18, 0.22) 100%
+        );
+}
+
+
+/*
+    Content sits above the image and overlay.
+*/
+
+.destination-hero__content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    min-height: calc(100svh - 88px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding-top: 54px;
+    padding-bottom: 38px;
+}
+
+
+/* ---------------------------------------------------------
+   HERO TOP
+   --------------------------------------------------------- */
+
+.destination-hero__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.destination-breadcrumb {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    transition:
+        color 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.destination-breadcrumb:hover {
+    color: #ffffff;
+}
+
+.destination-hero__top .destination-region {
+    color: #d9b37a;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------
+   HERO MAIN
+   --------------------------------------------------------- */
+
+.destination-hero__main {
+    width: min(900px, 100%);
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 90px;
+    padding-bottom: 70px;
+}
+
+.destination-hero__coordinates {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 22px;
+
+    color: #d9b37a;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.destination-hero__coordinates span + span::before {
+    content: "·";
+    margin-right: 16px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+.destination-hero__title {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(5rem, 11vw, 10.5rem);
+    font-weight: 400;
+    line-height: 0.82;
+    letter-spacing: -0.065em;
+
+    color: #ffffff;
+
+    text-wrap: balance;
+}
+
+
+.destination-hero__description {
+    max-width: 650px;
+
+    margin: 34px 0 0;
+
+    font-size: clamp(1rem, 1.5vw, 1.28rem);
+    line-height: 1.65;
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* ---------------------------------------------------------
+   HERO ACTIONS
+   --------------------------------------------------------- */
+
+.destination-hero__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px;
+
+    margin-top: 36px;
+}
+
+.destination-btn {
+    min-height: 52px;
+    padding: 0 25px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    border-radius: 999px;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        color 0.35s ease;
+}
+
+.destination-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+.destination-btn--light {
+    background: #ffffff;
+    color: #183229;
+}
+
+.destination-btn--light:hover {
+    background: #f0e8d9;
+    color: #183229;
+}
+
+
+.destination-hero__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #ffffff;
+
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+
+    font-size: 0.73rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.destination-hero__link:hover {
+    gap: 18px;
+    border-color: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   HERO BOTTOM / SCROLL INDICATOR
+   --------------------------------------------------------- */
+
+.destination-hero__bottom {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.destination-scroll {
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.destination-scroll-line {
+    display: block;
+
+    width: 80px;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ---------------------------------------------------------
+   2. FACTS STRIP
+   --------------------------------------------------------- */
+
+.destination-facts {
+    position: relative;
+    z-index: 3;
+
+    background: #f7f5ef;
+
+    border-bottom: 1px solid rgba(29, 48, 40, 0.12);
+}
+
+.destination-facts__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    border-left: 1px solid rgba(29, 48, 40, 0.12);
+}
+
+
+.destination-fact {
+    min-height: 145px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 30px 32px;
+
+    border-right: 1px solid rgba(29, 48, 40, 0.12);
+}
+
+
+.destination-fact span {
+    margin-bottom: 12px;
+
+    color: #9b7651;
+
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+
+.destination-fact strong {
+    color: #1d3028;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+
+.destination-fact--accent {
+    background: #1d3028;
+}
+
+.destination-fact--accent span {
+    color: #d9b37a;
+}
+
+.destination-fact--accent strong {
+    color: #f7f5ef;
+}
+
+
+/* ---------------------------------------------------------
+   3. STORY / INTRODUCTION
+   --------------------------------------------------------- */
+
+.destination-story {
+    padding: 150px 0 160px;
+    background: #f7f5ef;
+}
+
+
+.destination-story__grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+
+    gap: clamp(60px, 10vw, 150px);
+
+    max-width: 1180px;
+}
+
+
+.destination-story__intro {
+    position: relative;
+}
+
+
+.destination-story__intro h2 {
+    max-width: 480px;
+
+    margin: 18px 0 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+
+    color: #1d3028;
+}
+
+
+.destination-story__body {
+    max-width: 650px;
+    padding-top: 55px;
+}
+
+
+.destination-story__body p {
+    margin: 0 0 22px;
+
+    color: #5d6660;
+
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.destination-story__body p:first-child {
+    color: #33483f;
+    font-size: 1.18rem;
+    line-height: 1.8;
+}
+
+
+/* ---------------------------------------------------------
+   4. SECTION HEADINGS
+   --------------------------------------------------------- */
+
+.destination-section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+
+    align-items: end;
+
+    gap: 70px;
+
+    margin-bottom: 70px;
+}
+
+
+.destination-section-heading h2 {
+    max-width: 700px;
+
+    margin: 18px 0 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3.2rem, 6vw, 6rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+
+    color: #1d3028;
+}
+
+
+.destination-section-heading > p {
+    margin: 0;
+
+    color: #626b65;
+
+    font-size: 0.96rem;
+    line-height: 1.8;
+}
+
+
+.destination-section-heading--dark h2 {
+    color: #f7f5ef;
+}
+
+.destination-section-heading--dark > p {
+    color: rgba(247, 245, 239, 0.68);
+}
+
+
+/* ---------------------------------------------------------
+   5. ATTRACTIONS SECTION
+   --------------------------------------------------------- */
+
+.destination-discover {
+    padding: 150px 0 160px;
+}
+
+.destination-discover--light {
+    background: #ece9e1;
+}
+
+
+.destination-attractions {
+    border-top: 1px solid rgba(29, 48, 40, 0.18);
+}
+
+
+.destination-attraction {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+
+    gap: 30px;
+
+    padding: 34px 0;
+
+    border-bottom: 1px solid rgba(29, 48, 40, 0.18);
+
+    transition:
+        padding-left 0.45s ease,
+        background 0.45s ease;
+}
+
+
+.destination-attraction:hover {
+    padding-left: 16px;
+}
+
+
+.destination-attraction__number {
+    padding-top: 5px;
+
+    color: #a17b53;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+
+.destination-attraction__content {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.7fr) minmax(250px, 1fr) auto;
+
+    align-items: center;
+
+    gap: 40px;
+}
+
+
+.destination-attraction__content h3 {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.7rem, 2.6vw, 2.7rem);
+    font-weight: 400;
+    line-height: 1;
+
+    color: #1d3028;
+}
+
+
+.destination-attraction__content p {
+    margin: 0;
+
+    color: #68716b;
+
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+
+.destination-attraction__content a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    white-space: nowrap;
+
+    color: #1d3028;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    transition: gap 0.3s ease;
+}
+
+.destination-attraction__content a:hover {
+    gap: 16px;
+}
+
+
+.destination-section-action {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 60px;
+}
+
+
+/* ---------------------------------------------------------
+   6. EXPERIENCES
+   --------------------------------------------------------- */
+
+.destination-experiences {
+    padding: 150px 0 160px;
+
+    background: #1d3028;
+    color: #f7f5ef;
+}
+
+
+.destination-experiences__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+.destination-experience {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    background: #253a31;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.55s cubic-bezier(0.2, 0.65, 0.25, 1),
+        box-shadow 0.55s ease;
+}
+
+
+.destination-experience:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.22);
+}
+
+
+.destination-experience__image {
+    display: block;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background: #32483f;
+}
+
+
+.destination-experience__image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.9s cubic-bezier(0.2, 0.65, 0.25, 1),
+        filter 0.5s ease;
+}
+
+
+.destination-experience:hover .destination-experience__image img {
+    transform: scale(1.055);
+}
+
+
+.destination-experience__content {
+    padding: 30px 32px 34px;
+}
+
+
+.destination-experience__content > span {
+    display: block;
+
+    margin-bottom: 13px;
+
+    color: #d9b37a;
+
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+
+.destination-experience__content h3 {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.7rem, 2.6vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1;
+
+    color: #f7f5ef;
+}
+
+
+.destination-experience__content p {
+    margin: 18px 0 24px;
+
+    color: rgba(247, 245, 239, 0.65);
+
+    font-size: 0.88rem;
+    line-height: 1.75;
+}
+
+
+.destination-experience__content a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #f7f5ef;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    transition: gap 0.3s ease;
+}
+
+.destination-experience__content a:hover {
+    gap: 16px;
+}
+
+
+/* ---------------------------------------------------------
+   7. PRACTICAL INFORMATION
+   --------------------------------------------------------- */
+
+.destination-practical {
+    padding: 150px 0;
+
+    background: #f7f5ef;
+}
+
+
+.destination-practical__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 100px;
+}
+
+
+.destination-practical__item {
+    padding-top: 26px;
+
+    border-top: 1px solid rgba(29, 48, 40, 0.2);
+}
+
+
+.destination-practical__item h2 {
+    max-width: 500px;
+
+    margin: 18px 0 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+
+    color: #1d3028;
+}
+
+
+.destination-practical__item > p:last-child {
+    max-width: 570px;
+
+    margin: 0;
+
+    color: #626b65;
+
+    font-size: 0.95rem;
+    line-height: 1.85;
+}
+
+
+/* ---------------------------------------------------------
+   8. FINAL CTA
+   --------------------------------------------------------- */
+
+.destination-final-cta {
+    position: relative;
+
+    min-height: 680px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: #172b24;
+    color: #ffffff;
+}
+
+
+.destination-final-cta__image {
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+}
+
+
+.destination-final-cta__image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    filter: saturate(0.85);
+}
+
+
+.destination-final-cta__overlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(10, 29, 22, 0.9) 0%,
+            rgba(10, 29, 22, 0.7) 48%,
+            rgba(10, 29, 22, 0.4) 100%
+        );
+}
+
+
+.destination-final-cta__content {
+    position: relative;
+    z-index: 2;
+
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+.destination-final-cta__content .section-label {
+    color: #d9b37a;
+}
+
+
+.destination-final-cta__content h2 {
+    max-width: 900px;
+
+    margin: 22px 0 28px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: -0.055em;
+
+    color: #ffffff;
+}
+
+
+.destination-final-cta__content > p:not(.section-label) {
+    max-width: 570px;
+
+    margin: 0 0 36px;
+
+    color: rgba(255, 255, 255, 0.76);
+
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* ---------------------------------------------------------
+   9. TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+
+    .destination-hero__content {
+        padding-top: 42px;
+    }
+
+    .destination-hero__main {
+        padding-top: 70px;
+        padding-bottom: 55px;
+    }
+
+    .destination-hero__title {
+        font-size: clamp(4.5rem, 12vw, 8rem);
+    }
+
+
+    .destination-facts__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .destination-story__grid {
+        gap: 70px;
+    }
+
+
+    .destination-section-heading {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+
+    .destination-attraction__content {
+        grid-template-columns: 1fr auto;
+
+        gap: 20px;
+    }
+
+    .destination-attraction__content p {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+
+    .destination-practical__grid {
+        gap: 60px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   10. MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .destination-hero {
+        min-height: calc(100svh - 76px);
+    }
+
+    .destination-hero__content {
+        min-height: calc(100svh - 76px);
+
+        padding-top: 30px;
+        padding-bottom: 25px;
+    }
+
+
+    .destination-hero__top {
+        align-items: flex-start;
+    }
+
+    .destination-hero__top .destination-region {
+        text-align: right;
+    }
+
+
+    .destination-hero__main {
+        padding-top: 70px;
+        padding-bottom: 50px;
+    }
+
+
+    .destination-hero__coordinates {
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        margin-bottom: 20px;
+
+        font-size: 0.58rem;
+    }
+
+    .destination-hero__coordinates span + span::before {
+        margin-right: 8px;
+    }
+
+
+    .destination-hero__title {
+        font-size: clamp(4rem, 19vw, 6.5rem);
+        line-height: 0.86;
+    }
+
+
+    .destination-hero__description {
+        max-width: 500px;
+
+        margin-top: 25px;
+
+        font-size: 0.94rem;
+        line-height: 1.7;
+    }
+
+
+    .destination-hero__actions {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 22px;
+
+        margin-top: 30px;
+    }
+
+
+    .destination-scroll {
+        font-size: 0.56rem;
+    }
+
+    .destination-scroll-line {
+        width: 50px;
+    }
+
+
+    /* Facts */
+
+    .destination-facts__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-fact {
+        min-height: 115px;
+
+        padding: 24px 22px;
+    }
+
+
+    /* Story */
+
+    .destination-story {
+        padding: 90px 0 100px;
+    }
+
+    .destination-story__grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .destination-story__body {
+        padding-top: 0;
+    }
+
+    .destination-story__body p:first-child {
+        font-size: 1.05rem;
+    }
+
+
+    /* Discover */
+
+    .destination-discover {
+        padding: 90px 0 100px;
+    }
+
+    .destination-section-heading {
+        margin-bottom: 45px;
+    }
+
+    .destination-section-heading h2 {
+        font-size: clamp(2.9rem, 14vw, 4.5rem);
+    }
+
+
+    /* Attractions */
+
+    .destination-attraction {
+        grid-template-columns: 42px minmax(0, 1fr);
+
+        gap: 15px;
+
+        padding: 27px 0;
+    }
+
+    .destination-attraction:hover {
+        padding-left: 0;
+    }
+
+    .destination-attraction__content {
+        display: block;
+    }
+
+    .destination-attraction__content h3 {
+        margin-bottom: 14px;
+    }
+
+    .destination-attraction__content p {
+        margin-bottom: 18px;
+    }
+
+
+    /* Experiences */
+
+    .destination-experiences {
+        padding: 90px 0 100px;
+    }
+
+    .destination-experiences__grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .destination-experience__content {
+        padding: 25px 22px 28px;
+    }
+
+
+    /* Practical */
+
+    .destination-practical {
+        padding: 90px 0;
+    }
+
+    .destination-practical__grid {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+    }
+
+    .destination-practical__item h2 {
+        font-size: clamp(2.8rem, 13vw, 4.2rem);
+    }
+
+
+    /* Final CTA */
+
+    .destination-final-cta {
+        min-height: 600px;
+    }
+
+    .destination-final-cta__content {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .destination-final-cta__content h2 {
+        font-size: clamp(3.5rem, 16vw, 5.5rem);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   11. REDUCED MOTION ACCESSIBILITY
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .destination-hero__media img {
+        animation: none;
+        transform: none;
+    }
+
+    .destination-btn,
+    .destination-attraction,
+    .destination-experience,
+    .destination-experience__image img,
+    .destination-breadcrumb,
+    .destination-hero__link,
+    .destination-attraction__content a,
+    .destination-experience__content a {
+        transition: none;
+    }
+}
+
+/* =========================================================
+   DESTINATION JOURNEYS + STAYS
+   Premium editorial cards for destination pages.
+   ========================================================= */
+
+/* ---------- Journeys ---------- */
+
+.destination-journeys {
+    padding: 120px 0;
+    background: #f7f5ef;
+}
+
+.destination-journeys__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    margin-top: 56px;
+}
+
+.destination-journey {
+    background: #ffffff;
+    border: 1px solid rgba(29, 48, 40, 0.12);
+    overflow: hidden;
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.destination-journey:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 55px rgba(29, 48, 40, 0.12);
+}
+
+.destination-journey__image {
+    position: relative;
+    display: block;
+    height: 280px;
+    overflow: hidden;
+}
+
+.destination-journey__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.destination-journey:hover .destination-journey__image img {
+    transform: scale(1.04);
+}
+
+.destination-journey__arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(255, 255, 255, 0.92);
+    color: #1d3028;
+
+    font-size: 18px;
+}
+
+.destination-journey__content {
+    padding: 30px;
+}
+
+.destination-journey__type {
+    display: block;
+    margin-bottom: 12px;
+
+    color: #9b7a3c;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.destination-journey__content h3 {
+    margin: 0 0 14px;
+
+    color: #1d3028;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(25px, 2.4vw, 34px);
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+.destination-journey__content p {
+    margin: 0 0 24px;
+
+    color: #5f665f;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.destination-journey__content > a,
+.destination-stay__content > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #1d3028;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+}
+
+.destination-journey__content > a span,
+.destination-stay__content > a span {
+    transition: transform 0.3s ease;
+}
+
+.destination-journey__content > a:hover span,
+.destination-stay__content > a:hover span {
+    transform: translateX(4px);
+}
+
+
+/* ---------- Stays ---------- */
+
+.destination-stays {
+    padding: 120px 0;
+    background: #1d3028;
+    color: #ffffff;
+}
+
+.destination-stays .section-label {
+    color: #c6a35b;
+}
+
+.destination-stays .destination-section-heading h2 {
+    color: #ffffff;
+}
+
+.destination-stays .destination-section-heading > p {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.destination-stays__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 56px;
+}
+
+.destination-stay {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        background 0.4s ease;
+}
+
+.destination-stay:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.destination-stay__image {
+    position: relative;
+    display: block;
+    height: 250px;
+    overflow: hidden;
+}
+
+.destination-stay__image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.destination-stay:hover .destination-stay__image img {
+    transform: scale(1.04);
+}
+
+.destination-stay__arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(255, 255, 255, 0.92);
+    color: #1d3028;
+}
+
+.destination-stay__content {
+    padding: 26px;
+}
+
+.destination-stay__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 13px;
+
+    color: #c6a35b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.destination-stay__content h3 {
+    margin: 0 0 12px;
+
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.destination-stay__content p {
+    margin: 0 0 22px;
+
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.destination-stay__content > a {
+    color: #ffffff;
+}
+
+
+/* ---------- Section action ---------- */
+
+.destination-journeys .destination-section-action {
+    margin-top: 40px;
+}
+
+.destination-stays .destination-section-action {
+    margin-top: 40px;
+}
+
+.destination-stays .intro-link {
+    color: #ffffff;
+}
+
+.destination-stays .intro-link::after {
+    background: #c6a35b;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+
+    .destination-journeys,
+    .destination-stays {
+        padding: 90px 0;
+    }
+
+    .destination-journeys__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-stays__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .destination-journeys,
+    .destination-stays {
+        padding: 72px 0;
+    }
+
+    .destination-journeys__grid,
+    .destination-stays__grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 40px;
+    }
+
+    .destination-journey__image {
+        height: 230px;
+    }
+
+    .destination-stay__image {
+        height: 230px;
+    }
+
+    .destination-journey__content,
+    .destination-stay__content {
+        padding: 24px;
+    }
+}
+
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+
+    .destination-journey,
+    .destination-stay,
+    .destination-journey__image img,
+    .destination-stay__image img {
+        transition: none;
     }
 }
