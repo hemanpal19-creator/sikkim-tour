@@ -74,4 +74,86 @@ if (revealElements.length) {
     revealElements.forEach((element) => {
         revealObserver.observe(element);
     });
+    // Make sure image reveals are also triggered reliably.
+    document.querySelectorAll(".reveal-image").forEach((element) => {
+        if (element.getBoundingClientRect().top < window.innerHeight) {
+            element.classList.add("is-visible");
+        }
+    });
+}
+
+/* =========================================================
+   JOURNEYS MAP — SCROLL PARALLAX
+   ========================================================= */
+
+/*
+    Gives the decorative Sikkim map a gentle parallax movement.
+
+    The map moves independently from the content, creating
+    depth while scrolling through the Journeys section.
+*/
+
+const journeysMap = document.querySelector(".journeys-map");
+const journeysSection = document.querySelector(".journeys-section");
+
+if (journeysMap && journeysSection) {
+
+    let mapAnimationFrame = null;
+
+    const updateJourneysMap = () => {
+
+        const rect = journeysSection.getBoundingClientRect();
+
+        /*
+            Only animate while the Journeys section is visible.
+        */
+        if (
+            rect.bottom > 0 &&
+            rect.top < window.innerHeight
+        ) {
+
+            /*
+                Calculate how far the section has travelled
+                through the viewport.
+
+                The 70px range makes the movement noticeable
+                without making the map feel disconnected.
+            */
+            const progress =
+                (window.innerHeight - rect.top) /
+                (window.innerHeight + rect.height);
+
+            const movement =
+                (progress - 0.5) * 70;
+
+            journeysMap.style.transform =
+                `translate3d(0, ${movement}px, 0)`;
+        }
+
+        mapAnimationFrame = null;
+    };
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            /*
+                Prevent excessive calculations while scrolling.
+            */
+            if (!mapAnimationFrame) {
+
+                mapAnimationFrame =
+                    requestAnimationFrame(updateJourneysMap);
+            }
+
+        },
+        { passive: true }
+    );
+
+
+    /*
+        Set the initial position immediately.
+    */
+    updateJourneysMap();
 }

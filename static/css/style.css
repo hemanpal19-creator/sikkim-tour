@@ -6357,3 +6357,220 @@ p {
         transition: none;
     }
 }
+
+
+/* =========================================================
+   JOURNEYS — EDITORIAL SIKKIM MAP
+   ========================================================= */
+
+.journeys-section {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Keep the actual journey content above the map. */
+
+.journeys-section > .container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ---------------------------------------------------------
+   MAP LAYER
+   --------------------------------------------------------- */
+
+.journeys-map {
+    position: absolute;
+    z-index: 1;
+
+    top: 20px;
+    right: 3%;
+
+    width: min(420px, 34vw);
+    height: 620px;
+
+    pointer-events: none;
+
+    opacity: 0.9;
+
+    /*
+        Slightly faded so the map feels like part of the
+        editorial composition instead of an illustration
+        competing with the journey cards.
+    */
+}
+
+
+/* ---------------------------------------------------------
+   SVG
+   --------------------------------------------------------- */
+
+.journeys-map__svg {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    overflow: visible;
+}
+
+
+/* ---------------------------------------------------------
+   SIKKIM OUTLINE
+   --------------------------------------------------------- */
+
+.journeys-map__outline {
+    fill: rgba(180, 154, 91, 0.045);
+
+    stroke: rgba(180, 154, 91, 0.34);
+
+    stroke-width: 1.4;
+
+    stroke-linejoin: round;
+}
+
+
+/* ---------------------------------------------------------
+   TRAVEL ROUTES
+   --------------------------------------------------------- */
+
+.journeys-map__route {
+    fill: none;
+
+    stroke: rgba(180, 154, 91, 0.62);
+
+    stroke-width: 1.4;
+
+    stroke-dasharray: 5 7;
+
+    stroke-linecap: round;
+}
+
+
+.journeys-map__route--secondary {
+    stroke: rgba(180, 154, 91, 0.38);
+
+    stroke-width: 1.1;
+
+    stroke-dasharray: 3 8;
+}
+
+
+/* ---------------------------------------------------------
+   DESTINATION POINTS
+   --------------------------------------------------------- */
+
+.journeys-map__point {
+    fill: var(--color-green, #17372d);
+
+    stroke: #b49a5b;
+
+    stroke-width: 2;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(180, 154, 91, 0.25)
+        );
+}
+
+
+/* ---------------------------------------------------------
+   MAP LABELS
+   --------------------------------------------------------- */
+
+.journeys-map__label {
+    fill: rgba(23, 55, 45, 0.58);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-anchor: start;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+
+    .journeys-map {
+        right: -2%;
+
+        width: 360px;
+        height: 540px;
+
+        opacity: 0.65;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .journeys-map {
+        top: 80px;
+        right: -70px;
+
+        width: 300px;
+        height: 450px;
+
+        opacity: 0.42;
+    }
+
+    .journeys-map__label {
+        font-size: 8px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    /*
+        On phones the map becomes atmospheric decoration.
+        The cards remain the visual priority.
+    */
+    .journeys-map {
+        top: 120px;
+        right: -105px;
+
+        width: 260px;
+        height: 390px;
+
+        opacity: 0.25;
+    }
+
+    .journeys-map__outline {
+        stroke-width: 1.2;
+    }
+
+    .journeys-map__route {
+        stroke-width: 1.1;
+    }
+
+    .journeys-map__label {
+        font-size: 7px;
+        letter-spacing: 1.5px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .journeys-map__route {
+        stroke-dasharray: none;
+    }
+}

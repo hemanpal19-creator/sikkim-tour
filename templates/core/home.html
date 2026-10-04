@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Sikkim Tour | Discover the Himalayas{% endblock %}
 
 {% block meta_description %}
@@ -21,10 +21,9 @@ unique experiences and stays across the Himalayas.
         Sikkim image from our project media/content system.
     -->
     <div class="hero-media">
-        <!-- Temporary Sikkim hero image.
-        We will later move this into Django's media/content system. -->
-        <img
-            src="https://www.travelholicq.com/wp-content/uploads/2019/12/Charming-Lakes-That-You-Must-Visit-In-Sikkim.jpg"
+        <!-- Local project image used as the permanent homepage hero. -->
+       <img
+            src="{% static 'images/sikkim-hero.jpg' %}"
             alt="Mountain landscape in Sikkim"
         >
     </div>
@@ -79,10 +78,10 @@ unique experiences and stays across the Himalayas.
     <div class="container intro-grid">
 
         <!-- Small visual block creates a different composition from the hero. -->
-        <div class="intro-visual reveal reveal-image">
+        <div class="intro-visual">
             <div class="intro-image-frame">
                 <img
-                    src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=85"
+                    src="{% static 'images/sikkim-intro.webp' %}"
                     alt="Mountain landscape of Sikkim"
                 >
             </div>
@@ -217,6 +216,152 @@ unique experiences and stays across the Himalayas.
      FEATURED JOURNEYS
      ========================================================= -->
 <section class="journeys-section">
+
+    
+    <!--
+    Editorial Sikkim map.
+    Decorative only — it sits behind the journey content.
+    -->
+    <div class="journeys-map" aria-hidden="true">
+
+        <svg
+            class="journeys-map__svg"
+            viewBox="0 0 420 620"
+            preserveAspectRatio="xMidYMid meet"
+            role="presentation"
+        >
+
+            <!-- Sikkim-inspired geographic silhouette -->
+            <path
+                class="journeys-map__outline"
+                d="
+                    M 184 20
+                    L 238 35
+                    L 274 70
+                    L 292 112
+                    L 320 146
+                    L 309 188
+                    L 334 224
+                    L 316 265
+                    L 338 302
+                    L 322 340
+                    L 344 381
+                    L 326 420
+                    L 337 464
+                    L 310 505
+                    L 286 548
+                    L 247 588
+                    L 211 570
+                    L 181 535
+                    L 158 497
+                    L 126 466
+                    L 138 424
+                    L 111 391
+                    L 126 350
+                    L 105 313
+                    L 121 272
+                    L 103 230
+                    L 126 192
+                    L 119 151
+                    L 145 116
+                    L 142 77
+                    L 164 47
+                    Z
+                "
+            />
+
+            <!-- Main travel route -->
+            <path
+                class="journeys-map__route"
+                d="
+                    M 238 116
+                    C 218 165, 250 205, 228 251
+                    C 205 300, 221 344, 196 389
+                    C 177 425, 193 472, 219 505
+                "
+            />
+
+            <!-- Secondary route -->
+            <path
+                class="journeys-map__route journeys-map__route--secondary"
+                d="
+                    M 228 251
+                    C 270 275, 284 313, 270 352
+                    C 255 392, 245 430, 219 505
+                "
+            />
+
+            <!-- Gangtok -->
+            <circle
+                class="journeys-map__point"
+                cx="238"
+                cy="116"
+                r="5"
+            />
+
+            <!-- North Sikkim -->
+            <circle
+                class="journeys-map__point"
+                cx="218"
+                cy="66"
+                r="4"
+            />
+
+            <!-- Pelling -->
+            <circle
+                class="journeys-map__point"
+                cx="196"
+                cy="389"
+                r="5"
+            />
+
+            <!-- Namchi -->
+            <circle
+                class="journeys-map__point"
+                cx="219"
+                cy="505"
+                r="5"
+            />
+
+            <!-- Labels -->
+            <text
+                class="journeys-map__label"
+                x="253"
+                y="112"
+            >
+                GANGTOK
+            </text>
+
+            <text
+                class="journeys-map__label"
+                x="229"
+                y="62"
+            >
+                NORTH SIKKIM
+            </text>
+
+            <text
+                class="journeys-map__label"
+                x="211"
+                ="387"
+            >
+                PELLING
+            </text>
+
+            <text
+                class="journeys-map__label"
+                x="234"
+                y="509"
+            >
+                NAMCHI
+            </text>
+
+        </svg>
+
+    </div>
+
+
+
 
     <div class="container">
 
