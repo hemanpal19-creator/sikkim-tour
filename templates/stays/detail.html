@@ -10,7 +10,7 @@
 
     <section class="stay-hero">
 
-        <div class="stay-hero__image">
+        <div class="stay-hero__image reveal reveal-clip">
 
             {% if stay.image %}
                 <img
@@ -23,15 +23,15 @@
 
         <div class="stay-hero__content">
 
-            <p class="stay-hero__eyebrow">
+            <p class="stay-hero__eyebrow reveal reveal-horizontal">
                 {{ stay.destination.name }}
             </p>
 
-            <h1>
+            <h1 class="reveal reveal-clip">
                 {{ stay.name }}
             </h1>
 
-            <p class="stay-hero__description">
+            <p class="stay-hero__description reveal reveal-fade">
                 {{ stay.short_description }}
             </p>
 
@@ -43,21 +43,21 @@
 
         <div class="stay-content__main">
 
-            <p class="section-eyebrow">
+            <p class="section-eyebrow reveal reveal-horizontal">
                 The Stay
             </p>
 
-            <h2>
+            <h2 class="reveal reveal-clip">
                 About this stay
             </h2>
 
-            <div class="stay-content__description">
+            <div class="stay-content__description reveal reveal-fade">
                 {{ stay.description|linebreaks }}
             </div>
 
         </div>
 
-        <aside class="stay-info">
+        <aside class="stay-info reveal reveal-card">
 
             <div class="stay-info__item">
 

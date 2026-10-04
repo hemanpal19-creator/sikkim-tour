@@ -11,10 +11,11 @@
     <section class="journal-detail__hero">
 
         {% if post.image %}
-            <div class="journal-detail__image">
+            <div class="journal-detail__image reveal reveal-clip">
                 <img
                     src="{{ post.image.url }}"
                     alt="{{ post.title }}"
+                    loading="eager"
                 >
             </div>
         {% endif %}
@@ -22,20 +23,20 @@
         <div class="journal-detail__intro">
 
             {% if post.featured %}
-                <p class="journal-detail__eyebrow">
+                <p class="journal-detail__eyebrow reveal reveal-horizontal">
                     Featured Journal
                 </p>
             {% else %}
-                <p class="journal-detail__eyebrow">
+                <p class="journal-detail__eyebrow reveal reveal-horizontal">
                     Sikkim Journal
                 </p>
             {% endif %}
 
-            <h1>
+            <h1 class="reveal reveal-clip">
                 {{ post.title }}
             </h1>
 
-            <p>
+            <p class="reveal reveal-fade">
                 {{ post.short_description }}
             </p>
 
@@ -46,13 +47,13 @@
 
     <section class="journal-detail__content">
 
-        <div class="journal-detail__article">
+        <div class="journal-detail__article reveal reveal-fade">
 
             {{ post.content|linebreaks }}
 
         </div>
 
-        <aside class="journal-detail__aside">
+        <aside class="journal-detail__aside reveal reveal-card">
 
             <span>
                 Sikkim Tour Journal

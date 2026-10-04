@@ -10,12 +10,13 @@
 
     <section class="activity-hero">
 
-        <div class="activity-hero__image">
+        <div class="activity-hero__image reveal reveal-clip">
 
             {% if activity.image %}
                 <img
                     src="{{ activity.image.url }}"
                     alt="{{ activity.name }}"
+                    loading="eager"
                 >
             {% endif %}
 
@@ -23,15 +24,15 @@
 
         <div class="activity-hero__content">
 
-            <p class="activity-hero__eyebrow">
+            <p class="activity-hero__eyebrow reveal reveal-horizontal">
                 {{ activity.destination.name }}
             </p>
 
-            <h1>
+            <h1 class="reveal reveal-clip">
                 {{ activity.name }}
             </h1>
 
-            <p class="activity-hero__description">
+            <p class="activity-hero__description reveal reveal-fade">
                 {{ activity.short_description }}
             </p>
 
@@ -44,22 +45,22 @@
 
         <div class="activity-content__main">
 
-            <p class="section-eyebrow">
+            <p class="section-eyebrow reveal reveal-horizontal">
                 Experience
             </p>
 
-            <h2>
+            <h2 class="reveal reveal-clip">
                 About {{ activity.name }}
             </h2>
 
-            <div class="activity-content__description">
+            <div class="activity-content__description reveal reveal-fade">
                 {{ activity.description|linebreaks }}
             </div>
 
         </div>
 
 
-        <aside class="activity-info">
+        <aside class="activity-info reveal reveal-card">
 
             {% if activity.duration %}
                 <div class="activity-info__item">

@@ -17,18 +17,20 @@
 
     <div class="container">
 
-        <p class="section-label">
+        <p class="section-label reveal reveal-horizontal">
             {{ destination.region.name }}
         </p>
 
-        <h1>{{ destination.name }}</h1>
+        <h1 class="reveal reveal-clip">
+            {{ destination.name }}
+        </h1>
 
-        <p class="destination-detail-intro">
+        <p class="destination-detail-intro reveal reveal-fade">
             {{ destination.short_description }}
         </p>
 
         {% if destination.hero_image %}
-            <div class="destination-detail-image">
+            <div class="destination-detail-image reveal reveal-clip">
                 <img
                     src="{{ destination.hero_image.url }}"
                     alt="{{ destination.name }}"
@@ -39,22 +41,41 @@
         <div class="destination-detail-content">
 
             <div>
-                <p class="section-label">About the destination</p>
-                <h2>Discover {{ destination.name }}</h2>
+                <p class="section-label reveal reveal-horizontal">
+                    About the destination
+                </p>
+
+                <h2 class="reveal reveal-clip">
+                    Discover {{ destination.name }}
+                </h2>
             </div>
 
             <div>
-                <p>{{ destination.description }}</p>
+
+                <p class="reveal reveal-fade">
+                    {{ destination.description }}
+                </p>
 
                 {% if destination.best_time_to_visit %}
-                    <h3>Best time to visit</h3>
-                    <p>{{ destination.best_time_to_visit }}</p>
+                    <h3 class="reveal reveal-horizontal">
+                        Best time to visit
+                    </h3>
+
+                    <p class="reveal reveal-fade">
+                        {{ destination.best_time_to_visit }}
+                    </p>
                 {% endif %}
 
                 {% if destination.how_to_reach %}
-                    <h3>How to reach</h3>
-                    <p>{{ destination.how_to_reach }}</p>
+                    <h3 class="reveal reveal-horizontal">
+                        How to reach
+                    </h3>
+
+                    <p class="reveal reveal-fade">
+                        {{ destination.how_to_reach }}
+                    </p>
                 {% endif %}
+
             </div>
 
         </div>

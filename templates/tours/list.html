@@ -8,17 +8,17 @@
 
 <main class="tours-page">
 
-    <section class="tours-header">
+    <section class="tours-header reveal reveal-horizontal">
 
         <p class="section-eyebrow">
             Curated Journeys
         </p>
 
-        <h1>
+        <h1 class="reveal reveal-clip">
             Journeys made for the mountains
         </h1>
 
-        <p>
+        <p class="reveal reveal-fade">
             Discover thoughtfully planned journeys through Sikkim,
             from short escapes to immersive Himalayan adventures.
         </p>
@@ -29,12 +29,13 @@
 
         {% for tour in tours %}
 
-            <article class="tour-card">
+            <article class="tour-card reveal reveal-card">
 
                 {% if tour.image %}
                     <img
                         src="{{ tour.image.url }}"
                         alt="{{ tour.name }}"
+                        loading="lazy"
                     >
                 {% endif %}
 

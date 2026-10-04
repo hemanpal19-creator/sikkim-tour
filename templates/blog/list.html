@@ -8,17 +8,17 @@
 
 <main class="journal-page">
 
-    <section class="journal-header">
+    <section class="journal-header reveal reveal-horizontal">
 
         <p class="section-eyebrow">
             Journal & Guides
         </p>
 
-        <h1>
+        <h1 class="reveal reveal-clip">
             Stories from the mountains
         </h1>
 
-        <p>
+        <p class="reveal reveal-fade">
             Travel ideas, local insights and practical guides to help
             you experience Sikkim with more meaning.
         </p>
@@ -30,7 +30,7 @@
 
         {% for post in posts %}
 
-            <article class="journal-card">
+            <article class="journal-card reveal reveal-card">
 
                 {% if post.image %}
                     <div class="journal-card__image">

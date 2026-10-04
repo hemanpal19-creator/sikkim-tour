@@ -8,17 +8,17 @@
 
 <main class="activities-page">
 
-    <section class="activities-header">
+    <section class="activities-header reveal reveal-horizontal">
 
         <p class="section-eyebrow">
             Experience Sikkim
         </p>
 
-        <h1>
+        <h1 class="reveal reveal-clip">
             Experiences beyond the ordinary
         </h1>
 
-        <p>
+        <p class="reveal reveal-fade">
             Discover the activities that bring Sikkim's landscapes,
             culture and mountains to life.
         </p>
@@ -30,12 +30,13 @@
 
         {% for activity in activities %}
 
-            <article class="activity-card">
+            <article class="activity-card reveal reveal-card">
 
                 {% if activity.image %}
                     <img
                         src="{{ activity.image.url }}"
                         alt="{{ activity.name }}"
+                        loading="lazy"
                     >
                 {% endif %}
 

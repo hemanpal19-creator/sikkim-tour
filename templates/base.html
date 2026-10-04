@@ -39,16 +39,15 @@
 
             <!-- Desktop navigation links. -->
             <div class="site-nav-links">
-                <a href="#">Destinations</a>
-                <a href="#">Journeys</a>
-                <a href="#">Experiences</a>
-                <a href="#">Stays</a>
-                <a href="#">Journal</a>
+                <a href="{% url 'destination_list' %}">Destinations</a>
+                <a href="{% url 'tour_list' %}">Journeys</a>
+                <a href="{% url 'activity_list' %}">Experiences</a>
+                <a href="{% url 'stay_list' %}">Stays</a>
+                <a href="{% url 'post_list' %}">Journal</a>
             </div>
 
-            <!-- Primary business CTA. We will connect this to the enquiry
-                 system once that app is developed. -->
-            <a href="#" class="nav-cta">
+            <!-- Primary business CTA. -->
+            <a href="{% url 'enquiry_create' %}" class="nav-cta">
                 Plan my journey
             </a>
 

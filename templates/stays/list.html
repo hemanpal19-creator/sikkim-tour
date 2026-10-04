@@ -8,17 +8,17 @@
 
 <main class="stays-page">
 
-    <section class="stays-header">
+    <section class="stays-header reveal reveal-horizontal">
 
         <p class="section-eyebrow">
             Places to Stay
         </p>
 
-        <h1>
+        <h1 class="reveal reveal-clip">
             Stay closer to the mountains
         </h1>
 
-        <p>
+        <p class="reveal reveal-fade">
             Discover comfortable stays across Sikkim, from peaceful
             mountain retreats to welcoming places in the heart of town.
         </p>
@@ -29,12 +29,13 @@
 
         {% for stay in stays %}
 
-            <article class="stay-card">
+            <article class="stay-card reveal reveal-card">
 
                 {% if stay.image %}
                     <img
                         src="{{ stay.image.url }}"
                         alt="{{ stay.name }}"
+                        loading="lazy"
                     >
                 {% endif %}
 

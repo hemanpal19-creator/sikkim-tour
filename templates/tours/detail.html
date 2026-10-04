@@ -10,7 +10,7 @@
 
     <section class="tour-hero">
 
-        <div class="tour-hero__image">
+        <div class="tour-hero__image reveal reveal-clip">
 
             {% if tour.image %}
                 <img
@@ -23,15 +23,15 @@
 
         <div class="tour-hero__content">
 
-            <p class="tour-hero__eyebrow">
+            <p class="tour-hero__eyebrow reveal reveal-horizontal">
                 Curated Journey
             </p>
 
-            <h1>
+            <h1 class="reveal reveal-clip">
                 {{ tour.name }}
             </h1>
 
-            <p class="tour-hero__description">
+            <p class="tour-hero__description reveal reveal-fade">
                 {{ tour.short_description }}
             </p>
 
@@ -43,21 +43,21 @@
 
         <div class="tour-content__main">
 
-            <p class="section-eyebrow">
+            <p class="section-eyebrow reveal reveal-horizontal">
                 The Journey
             </p>
 
-            <h2>
+            <h2 class="reveal reveal-clip">
                 About this journey
             </h2>
 
-            <div class="tour-content__description">
+            <div class="tour-content__description reveal reveal-fade">
                 {{ tour.description|linebreaks }}
             </div>
 
         </div>
 
-        <aside class="tour-info">
+        <aside class="tour-info reveal reveal-card">
 
             {% if tour.duration %}
                 <div class="tour-info__item">
