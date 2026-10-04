@@ -7226,7 +7226,7 @@ p {
     margin: 0;
 
     color: #ffffff;
-    
+
     font-family:
         Georgia,
         "Times New Roman",
@@ -7676,4 +7676,132 @@ p {
     .journal-detail__next a {
         transition: none;
     }
+}
+
+/* =========================================================
+   STAYS INDEX — PREMIUM EDITORIAL FINISH
+   ========================================================= */
+
+/*
+    The introduction remains light and clean.
+
+    The stay collection gets a deeper visual treatment
+    so the page does not feel like a plain white listing.
+*/
+.stays-index {
+    position: relative;
+    background: #f5f1e8;
+}
+
+/*
+    Add a subtle mountain-inspired background treatment
+    behind the stay collection.
+*/
+.stays-index__grid {
+    position: relative;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(23, 55, 45, 0.96),
+            rgba(32, 68, 56, 0.94)
+        );
+}
+
+/*
+    Stay names:
+    Bright ivory gives strong contrast against the green.
+*/
+.stay-card h2,
+.stay-card h2 a {
+    color: #f5f0e6;
+}
+
+/*
+    Description:
+    Softer ivory so the title remains the strongest element.
+*/
+.stay-card p {
+    color: rgba(245, 240, 230, 0.72);
+}
+
+/*
+    Location / category label.
+*/
+.stay-card__location,
+.stay-card__label {
+    color: #c7a967;
+}
+
+/*
+    Stay type and price:
+    Make these clearly readable instead of dark-on-dark.
+*/
+.stay-card__meta,
+.stay-card__meta span {
+    color: rgba(245, 240, 230, 0.82);
+    border-color: rgba(245, 240, 230, 0.22);
+}
+
+/*
+    Main action.
+*/
+.stay-card__link {
+    color: #ffffff;
+    border-bottom-color: rgba(245, 240, 230, 0.45);
+}
+
+.stay-card__link:hover {
+    color: #c7a967;
+    border-bottom-color: #c7a967;
+}
+
+/*
+    Subtle hover effect.
+*/
+.stay-card:hover {
+    background: rgba(255, 255, 255, 0.035);
+}
+
+/* =========================================================
+   STAYS — FIX HOVER STATE
+   ========================================================= */
+
+/*
+    Keep the stay card dark green when the mouse enters it.
+    The previous hover styling was turning the card light,
+    which made the new light text disappear.
+*/
+.stay-card:hover {
+    background: linear-gradient(
+        135deg,
+        #17372d 0%,
+        #21483b 100%
+    ) !important;
+}
+
+/*
+    Keep all stay content readable during hover.
+*/
+.stay-card:hover h3,
+.stay-card:hover h3 a {
+    color: #f5f0e6 !important;
+}
+
+.stay-card:hover p {
+    color: rgba(245, 240, 230, 0.72) !important;
+}
+
+.stay-card:hover .stay-card__location {
+    color: #c7a967 !important;
+}
+
+.stay-card:hover .stay-card__meta,
+.stay-card:hover .stay-card__meta span {
+    color: rgba(245, 240, 230, 0.82) !important;
+    border-color: rgba(245, 240, 230, 0.22) !important;
+}
+
+.stay-card:hover .stay-card__link {
+    color: #ffffff !important;
+    border-bottom-color: rgba(245, 240, 230, 0.45) !important;
 }
