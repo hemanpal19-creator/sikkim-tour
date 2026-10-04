@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Destinations in Sikkim | Sikkim Tour{% endblock %}
+
+{% block meta_description %}
+Explore the destinations of Sikkim, from Gangtok and Pelling to
+Lachung, Lachen, Ravangla and Namchi.
+{% endblock %}
+
+{% block content %}
+
+<section class="destinations-section">
+
+    <div class="container">
+
+        <div class="destinations-heading">
+            <div>
+                <p class="section-label">Explore Sikkim</p>
+
+                <h1>
+                    Places worth<br>
+                    discovering.
+                </h1>
+            </div>
+
+            <p class="destinations-intro">
+                From lively mountain towns to quiet valleys and
+                high-altitude landscapes, discover the places that
+                make Sikkim unforgettable.
+            </p>
+        </div>
+
+        <div class="destination-grid">
+
+            {% for destination in destinations %}
+
+                <article class="destination-card reveal reveal-card">
+
+                    <a
+                        href="{% url 'destination_detail' destination.slug %}"
+                        class="destination-image"
+                    >
+
+                        {% if destination.hero_image %}
+                            <img
+                                src="{{ destination.hero_image.url }}"
+                                alt="{{ destination.name }} in Sikkim"
+                                loading="lazy"
+                            >
+                        {% endif %}
+
+                        <span class="destination-arrow" aria-hidden="true">
+                            ↗
+                        </span>
+
+                    </a>
+
+                    <div class="destination-info">
+
+                        <span class="destination-region">
+                            {{ destination.region.name }}
+                        </span>
+
+                        <h2>{{ destination.name }}</h2>
+
+                        <p>
+                            {{ destination.short_description }}
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p class="empty-state">
+                    Destinations will appear here soon.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

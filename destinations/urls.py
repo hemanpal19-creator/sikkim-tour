@@ -34,6 +34,14 @@ urlpatterns = [
         name="activity_detail",
     ),
 
+    # Destination listing page.
+    # Example: /destinations/
+    path(
+        "",
+        views.destination_list,
+        name="destination_list",
+    ),
+    
     # Destination detail page.
     # Example: /destinations/gangtok/
     path(

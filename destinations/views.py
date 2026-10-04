@@ -2,6 +2,27 @@ from django.shortcuts import get_object_or_404, render
 
 from .models import Destination, Attraction, Activity
 
+def destination_list(request):
+    """
+    Displays all active destinations.
+
+    Destinations are loaded from the database so the page
+    automatically updates when content is managed through Django Admin.
+    """
+
+    destinations = (
+        Destination.objects
+        .filter(is_active=True)
+        .order_by("-featured", "name")
+    )
+
+    return render(
+        request,
+        "destinations/list.html",
+        {
+            "destinations": destinations,
+        },
+    )
 
 def destination_detail(request, slug):
     """
