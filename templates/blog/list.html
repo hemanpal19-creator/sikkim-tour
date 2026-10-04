@@ -1,81 +1,110 @@
 {% extends "base.html" %}
 
-{% block title %}
-    Journal | Sikkim Tour
+{% block title %}Journal & Guides | Sikkim Tour{% endblock %}
+
+{% block meta_description %}
+Travel stories, practical guides and thoughtful ideas for discovering Sikkim.
 {% endblock %}
 
 {% block content %}
 
-<main class="journal-page">
+<section class="journal-index">
 
-    <section class="journal-header reveal reveal-horizontal">
+    <!-- Editorial introduction -->
+    <div class="journal-index__intro">
 
-        <p class="section-eyebrow">
-            Journal & Guides
-        </p>
+        <div class="container journal-index__intro-grid">
 
-        <h1 class="reveal reveal-clip">
-            Stories from the mountains
-        </h1>
+            <div>
+                <p class="section-label">
+                    Journal & Guides
+                </p>
 
-        <p class="reveal reveal-fade">
-            Travel ideas, local insights and practical guides to help
-            you experience Sikkim with more meaning.
-        </p>
+                <h1>
+                    Stories from<br>
+                    the mountains.
+                </h1>
+            </div>
 
-    </section>
+            <div class="journal-index__intro-copy">
+                <p>
+                    Travel ideas, local insights and practical guides
+                    to help you experience Sikkim with more meaning.
+                </p>
+
+                <span class="journal-index__line"></span>
+            </div>
+
+        </div>
+
+    </div>
 
 
-    <section class="journal-grid">
+    <!-- Article collection -->
+    <div class="container">
 
-        {% for post in posts %}
+        <div class="journal-index__grid">
 
-            <article class="journal-card reveal reveal-card">
+            {% for post in posts %}
 
-                {% if post.image %}
-                    <div class="journal-card__image">
-                        <img
-                            src="{{ post.image.url }}"
-                            alt="{{ post.title }}"
-                            loading="lazy"
-                        >
+                <article class="journal-index-card">
+
+                    <div class="journal-index-card__number">
+                        {{ forloop.counter|stringformat:"02d" }}
                     </div>
-                {% endif %}
 
-                <div class="journal-card__content">
+                    <div class="journal-index-card__content">
 
-                    {% if post.featured %}
-                        <span class="journal-card__featured">
-                            Featured story
-                        </span>
-                    {% endif %}
+                        {% if post.featured %}
+                            <span class="journal-index-card__label">
+                                Featured story
+                            </span>
+                        {% else %}
+                            <span class="journal-index-card__label">
+                                Sikkim Journal
+                            </span>
+                        {% endif %}
 
-                    <h2>
-                        {{ post.title }}
-                    </h2>
+                        <h2>
+                            <a href="{% url 'post_detail' post.slug %}">
+                                {{ post.title }}
+                            </a>
+                        </h2>
 
-                    <p>
-                        {{ post.short_description }}
-                    </p>
+                        {% if post.short_description %}
+                            <p>
+                                {{ post.short_description }}
+                            </p>
+                        {% endif %}
 
-                    <a href="{% url 'post_detail' post.slug %}">
-                        Read story →
-                    </a>
+                        <a
+                            href="{% url 'post_detail' post.slug %}"
+                            class="journal-index-card__link"
+                        >
+                            Read story
+                            <span aria-hidden="true">↗</span>
+                        </a>
 
+                    </div>
+
+                    <div class="journal-index-card__mark">
+                        <span></span>
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-state">
+                    Journal stories will appear here soon.
                 </div>
 
-            </article>
+            {% endfor %}
 
-        {% empty %}
+        </div>
 
-            <p>
-                No journal stories are available yet.
-            </p>
+    </div>
 
-        {% endfor %}
-
-    </section>
-
-</main>
+</section>
 
 {% endblock %}

@@ -1,72 +1,149 @@
 {% extends "base.html" %}
 
-{% block title %}
-    {{ post.title }} | Sikkim Tour
+{% block title %}{{ post.title }} | Sikkim Tour{% endblock %}
+
+{% block meta_description %}
+{{ post.short_description }}
 {% endblock %}
 
 {% block content %}
 
-<main class="journal-detail">
+<article class="journal-detail">
 
-    <section class="journal-detail__hero">
+    <!-- =====================================================
+         ARTICLE HERO
+         ===================================================== -->
 
-        {% if post.image %}
-            <div class="journal-detail__image reveal reveal-clip">
-                <img
-                    src="{{ post.image.url }}"
-                    alt="{{ post.title }}"
-                    loading="eager"
-                >
+    <header class="journal-detail__hero">
+
+        <div class="container">
+
+            <div class="journal-detail__hero-inner">
+
+                <div class="journal-detail__eyebrow">
+                    <span>Sikkim Journal</span>
+                    <span class="journal-detail__eyebrow-line"></span>
+                    <span>
+                        {% if post.created_at %}
+                            {{ post.created_at|date:"d M Y" }}
+                        {% endif %}
+                    </span>
+                </div>
+
+
+                <h1>
+                    {{ post.title }}
+                </h1>
+
+
+                {% if post.short_description %}
+                    <p class="journal-detail__lead">
+                        {{ post.short_description }}
+                    </p>
+                {% endif %}
+
+
+                <div class="journal-detail__hero-footer">
+
+                    <span>
+                        Sikkim · India
+                    </span>
+
+                    <span class="journal-detail__scroll">
+                        Read the story
+                        <span aria-hidden="true">↓</span>
+                    </span>
+
+                </div>
+
             </div>
-        {% endif %}
 
-        <div class="journal-detail__intro">
+        </div>
 
-            {% if post.featured %}
-                <p class="journal-detail__eyebrow reveal reveal-horizontal">
-                    Featured Journal
-                </p>
-            {% else %}
-                <p class="journal-detail__eyebrow reveal reveal-horizontal">
-                    Sikkim Journal
-                </p>
-            {% endif %}
+    </header>
 
-            <h1 class="reveal reveal-clip">
-                {{ post.title }}
-            </h1>
 
-            <p class="reveal reveal-fade">
-                {{ post.short_description }}
-            </p>
+    <!-- =====================================================
+         ARTICLE BODY
+         ===================================================== -->
+
+    <section class="journal-detail__body">
+
+        <div class="container journal-detail__layout">
+
+            <aside class="journal-detail__aside">
+
+                <div class="journal-detail__aside-inner">
+
+                    <span class="journal-detail__aside-label">
+                        Sikkim Tour
+                    </span>
+
+                    <span class="journal-detail__aside-rule"></span>
+
+                    <a href="{% url 'post_list' %}">
+                        ← Back to Journal
+                    </a>
+
+                </div>
+
+            </aside>
+
+
+            <div class="journal-detail__content">
+
+                <div class="journal-detail__opening">
+                    <span class="journal-detail__opening-mark">
+                        “
+                    </span>
+
+                    {% if post.short_description %}
+                        <p>
+                            {{ post.short_description }}
+                        </p>
+                    {% endif %}
+                </div>
+
+
+                <div class="journal-detail__text">
+
+                    {{ post.content|linebreaks }}
+
+                </div>
+
+
+                <div class="journal-detail__end">
+
+                    <span class="journal-detail__end-line"></span>
+
+                    <span>
+                        End of story
+                    </span>
+
+                    <span class="journal-detail__end-line"></span>
+
+                </div>
+
+
+                <div class="journal-detail__next">
+
+                    <span>
+                        Continue exploring
+                    </span>
+
+                    <a href="{% url 'post_list' %}">
+                        Back to Journal
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                </div>
+
+            </div>
 
         </div>
 
     </section>
 
-
-    <section class="journal-detail__content">
-
-        <div class="journal-detail__article reveal reveal-fade">
-
-            {{ post.content|linebreaks }}
-
-        </div>
-
-        <aside class="journal-detail__aside reveal reveal-card">
-
-            <span>
-                Sikkim Tour Journal
-            </span>
-
-            <a href="{% url 'post_list' %}">
-                ← Back to Journal
-            </a>
-
-        </aside>
-
-    </section>
-
-</main>
+</article>
 
 {% endblock %}
