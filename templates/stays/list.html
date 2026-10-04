@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Stays | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="stays-page">
+
+    <section class="stays-header">
+
+        <p class="section-eyebrow">
+            Places to Stay
+        </p>
+
+        <h1>
+            Stay closer to the mountains
+        </h1>
+
+        <p>
+            Discover comfortable stays across Sikkim, from peaceful
+            mountain retreats to welcoming places in the heart of town.
+        </p>
+
+    </section>
+
+    <section class="stays-grid">
+
+        {% for stay in stays %}
+
+            <article class="stay-card">
+
+                {% if stay.image %}
+                    <img
+                        src="{{ stay.image.url }}"
+                        alt="{{ stay.name }}"
+                    >
+                {% endif %}
+
+                <div class="stay-card__content">
+
+                    {% if stay.featured %}
+                        <span class="stay-card__featured">
+                            Featured stay
+                        </span>
+                    {% endif %}
+
+                    <span>
+                        {{ stay.destination.name }}
+                    </span>
+
+                    <h2>
+                        {{ stay.name }}
+                    </h2>
+
+                    <p>
+                        {{ stay.short_description }}
+                    </p>
+
+                    <div class="stay-card__meta">
+
+                        {% if stay.stay_type %}
+                            <span>
+                                {{ stay.stay_type }}
+                            </span>
+                        {% endif %}
+
+                        {% if stay.price_range %}
+                            <span>
+                                {{ stay.price_range }}
+                            </span>
+                        {% endif %}
+
+                    </div>
+
+                    <a href="{% url 'stay_detail' stay.slug %}">
+                        Discover stay →
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                No stays are available yet.
+            </p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+{% endblock %}

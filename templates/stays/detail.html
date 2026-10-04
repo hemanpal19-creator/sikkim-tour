@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ stay.name }} | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="stay-detail">
+
+    <section class="stay-hero">
+
+        <div class="stay-hero__image">
+
+            {% if stay.image %}
+                <img
+                    src="{{ stay.image.url }}"
+                    alt="{{ stay.name }}"
+                >
+            {% endif %}
+
+        </div>
+
+        <div class="stay-hero__content">
+
+            <p class="stay-hero__eyebrow">
+                {{ stay.destination.name }}
+            </p>
+
+            <h1>
+                {{ stay.name }}
+            </h1>
+
+            <p class="stay-hero__description">
+                {{ stay.short_description }}
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="stay-content">
+
+        <div class="stay-content__main">
+
+            <p class="section-eyebrow">
+                The Stay
+            </p>
+
+            <h2>
+                About this stay
+            </h2>
+
+            <div class="stay-content__description">
+                {{ stay.description|linebreaks }}
+            </div>
+
+        </div>
+
+        <aside class="stay-info">
+
+            <div class="stay-info__item">
+
+                <span>
+                    Destination
+                </span>
+
+                <a href="{% url 'destination_detail' stay.destination.slug %}">
+                    {{ stay.destination.name }}
+                </a>
+
+            </div>
+
+            {% if stay.stay_type %}
+                <div class="stay-info__item">
+
+                    <span>
+                        Stay type
+                    </span>
+
+                    <strong>
+                        {{ stay.stay_type }}
+                    </strong>
+
+                </div>
+            {% endif %}
+
+            {% if stay.price_range %}
+                <div class="stay-info__item">
+
+                    <span>
+                        Price range
+                    </span>
+
+                    <strong>
+                        {{ stay.price_range }}
+                    </strong>
+
+                </div>
+            {% endif %}
+
+        </aside>
+
+    </section>
+
+</main>
+
+{% endblock %}

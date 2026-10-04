@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ post.title }} | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="journal-detail">
+
+    <section class="journal-detail__hero">
+
+        {% if post.image %}
+            <div class="journal-detail__image">
+                <img
+                    src="{{ post.image.url }}"
+                    alt="{{ post.title }}"
+                >
+            </div>
+        {% endif %}
+
+        <div class="journal-detail__intro">
+
+            {% if post.featured %}
+                <p class="journal-detail__eyebrow">
+                    Featured Journal
+                </p>
+            {% else %}
+                <p class="journal-detail__eyebrow">
+                    Sikkim Journal
+                </p>
+            {% endif %}
+
+            <h1>
+                {{ post.title }}
+            </h1>
+
+            <p>
+                {{ post.short_description }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="journal-detail__content">
+
+        <div class="journal-detail__article">
+
+            {{ post.content|linebreaks }}
+
+        </div>
+
+        <aside class="journal-detail__aside">
+
+            <span>
+                Sikkim Tour Journal
+            </span>
+
+            <a href="{% url 'post_list' %}">
+                ← Back to Journal
+            </a>
+
+        </aside>
+
+    </section>
+
+</main>
+
+{% endblock %}

@@ -28,4 +28,19 @@ urlpatterns = [
     # All destination pages use URLs such as:
     # /destinations/gangtok/
     path("destinations/", include("destinations.urls")),
+    
+    path(
+        "tours/",
+        include("tours.urls"),
+    ),
+    
+    path(
+        "stays/",
+        include("stays.urls"),
+    ),
+    
+    path(
+        "journal/",
+        include("blog.urls"),
+    ),
 ]

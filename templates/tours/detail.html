@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ tour.name }} | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="tour-detail">
+
+    <section class="tour-hero">
+
+        <div class="tour-hero__image">
+
+            {% if tour.image %}
+                <img
+                    src="{{ tour.image.url }}"
+                    alt="{{ tour.name }}"
+                >
+            {% endif %}
+
+        </div>
+
+        <div class="tour-hero__content">
+
+            <p class="tour-hero__eyebrow">
+                Curated Journey
+            </p>
+
+            <h1>
+                {{ tour.name }}
+            </h1>
+
+            <p class="tour-hero__description">
+                {{ tour.short_description }}
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="tour-content">
+
+        <div class="tour-content__main">
+
+            <p class="section-eyebrow">
+                The Journey
+            </p>
+
+            <h2>
+                About this journey
+            </h2>
+
+            <div class="tour-content__description">
+                {{ tour.description|linebreaks }}
+            </div>
+
+        </div>
+
+        <aside class="tour-info">
+
+            {% if tour.duration %}
+                <div class="tour-info__item">
+                    <span>Duration</span>
+                    <strong>
+                        {{ tour.duration }}
+                    </strong>
+                </div>
+            {% endif %}
+
+            {% if tour.price %}
+                <div class="tour-info__item">
+                    <span>Starting from</span>
+                    <strong>
+                        {{ tour.price }}
+                    </strong>
+                </div>
+            {% endif %}
+
+            <div class="tour-info__item">
+                <span>Journey type</span>
+                <strong>
+                    Curated Sikkim journey
+                </strong>
+            </div>
+
+            {% if tour.destinations.all %}
+                <div class="tour-info__item">
+                    <span>Destinations</span>
+
+                    <div class="tour-info__destinations">
+
+                        {% for destination in tour.destinations.all %}
+
+                            <a
+                                href="{% url 'destination_detail' destination.slug %}"
+                            >
+                                {{ destination.name }}
+                            </a>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            {% endif %}
+
+        </aside>
+
+    </section>
+
+</main>
+
+{% endblock %}

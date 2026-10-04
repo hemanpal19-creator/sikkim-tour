@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Journal | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="journal-page">
+
+    <section class="journal-header">
+
+        <p class="section-eyebrow">
+            Journal & Guides
+        </p>
+
+        <h1>
+            Stories from the mountains
+        </h1>
+
+        <p>
+            Travel ideas, local insights and practical guides to help
+            you experience Sikkim with more meaning.
+        </p>
+
+    </section>
+
+
+    <section class="journal-grid">
+
+        {% for post in posts %}
+
+            <article class="journal-card">
+
+                {% if post.image %}
+                    <div class="journal-card__image">
+                        <img
+                            src="{{ post.image.url }}"
+                            alt="{{ post.title }}"
+                            loading="lazy"
+                        >
+                    </div>
+                {% endif %}
+
+                <div class="journal-card__content">
+
+                    {% if post.featured %}
+                        <span class="journal-card__featured">
+                            Featured story
+                        </span>
+                    {% endif %}
+
+                    <h2>
+                        {{ post.title }}
+                    </h2>
+
+                    <p>
+                        {{ post.short_description }}
+                    </p>
+
+                    <a href="{% url 'post_detail' post.slug %}">
+                        Read story →
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                No journal stories are available yet.
+            </p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+{% endblock %}

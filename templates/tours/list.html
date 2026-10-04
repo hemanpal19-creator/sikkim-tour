@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Journeys | Sikkim Tour
+{% endblock %}
+
+{% block content %}
+
+<main class="tours-page">
+
+    <section class="tours-header">
+
+        <p class="section-eyebrow">
+            Curated Journeys
+        </p>
+
+        <h1>
+            Journeys made for the mountains
+        </h1>
+
+        <p>
+            Discover thoughtfully planned journeys through Sikkim,
+            from short escapes to immersive Himalayan adventures.
+        </p>
+
+    </section>
+
+    <section class="tours-grid">
+
+        {% for tour in tours %}
+
+            <article class="tour-card">
+
+                {% if tour.image %}
+                    <img
+                        src="{{ tour.image.url }}"
+                        alt="{{ tour.name }}"
+                    >
+                {% endif %}
+
+                <div class="tour-card__content">
+
+                    {% if tour.featured %}
+                        <span class="tour-card__featured">
+                            Featured journey
+                        </span>
+                    {% endif %}
+
+                    <h2>
+                        {{ tour.name }}
+                    </h2>
+
+                    <p>
+                        {{ tour.short_description }}
+                    </p>
+
+                    <div class="tour-card__meta">
+
+                        {% if tour.duration %}
+                            <span>
+                                {{ tour.duration }}
+                            </span>
+                        {% endif %}
+
+                        {% if tour.price %}
+                            <span>
+                                {{ tour.price }}
+                            </span>
+                        {% endif %}
+
+                    </div>
+
+                    <a href="{% url 'tour_detail' tour.slug %}">
+                        Explore journey →
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                No journeys are available yet.
+            </p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+{% endblock %}
