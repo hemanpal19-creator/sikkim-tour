@@ -3535,3 +3535,1307 @@ p {
     margin: 30px 0;
     line-height: 1.8;
 }
+
+/* =========================================================
+   FEATURED JOURNEYS — PREMIUM EDITORIAL SECTION
+   ========================================================= */
+
+.journeys-section {
+    position: relative;
+    padding: 150px 0 160px;
+    background: #f1eee7;
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+   SECTION HEADING
+   --------------------------------------------------------- */
+
+.journeys-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 70px;
+}
+
+.journeys-heading h2 {
+    margin: 18px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    color: #1e3028;
+}
+
+.journeys-intro {
+    max-width: 390px;
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: #59625d;
+}
+
+/* ---------------------------------------------------------
+   JOURNEY GRID
+   --------------------------------------------------------- */
+
+.journeys-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* ---------------------------------------------------------
+   JOURNEY CARD
+   --------------------------------------------------------- */
+
+.journey-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #faf8f3;
+    border: 1px solid rgba(30, 48, 40, 0.12);
+    overflow: hidden;
+    transition:
+        transform 0.6s cubic-bezier(0.2, 0.65, 0.25, 1),
+        box-shadow 0.6s ease;
+}
+
+.journey-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 55px rgba(30, 48, 40, 0.13);
+}
+
+/* ---------------------------------------------------------
+   IMAGE
+   --------------------------------------------------------- */
+
+.journey-card__image {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #d9d5cb;
+}
+
+.journey-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+        transform 1s cubic-bezier(0.2, 0.65, 0.25, 1),
+        filter 0.6s ease;
+}
+
+.journey-card:hover .journey-card__image img {
+    transform: scale(1.055);
+}
+
+/* Image overlay */
+
+.journey-card__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(15, 30, 24, 0.28),
+        transparent 45%
+    );
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+/* Arrow */
+
+.journey-card__arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    z-index: 2;
+
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+
+    background: rgba(20, 35, 29, 0.28);
+    color: #ffffff;
+
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+
+    transition:
+        background 0.35s ease,
+        transform 0.35s ease;
+}
+
+.journey-card:hover .journey-card__arrow {
+    background: rgba(20, 35, 29, 0.7);
+    transform: rotate(8deg);
+}
+
+/* ---------------------------------------------------------
+   CARD CONTENT
+   --------------------------------------------------------- */
+
+.journey-card__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 30px 30px 32px;
+}
+
+.journey-card__label {
+    display: inline-block;
+    margin-bottom: 14px;
+
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    color: #9a7550;
+}
+
+.journey-card__content h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.65rem, 2.3vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: #1e3028;
+}
+
+.journey-card__content p {
+    margin: 18px 0 28px;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: #646b66;
+}
+
+.journey-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin-top: auto;
+
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(30, 48, 40, 0.45);
+
+    color: #1e3028;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.journey-card__link:hover {
+    gap: 16px;
+    border-color: #1e3028;
+}
+
+/* ---------------------------------------------------------
+   VIEW ALL JOURNEYS
+   --------------------------------------------------------- */
+
+.journeys-section .section-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.journeys-section .intro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(30, 48, 40, 0.45);
+
+    color: #1e3028;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.journeys-section .intro-link:hover {
+    gap: 18px;
+    border-color: #1e3028;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .journeys-section {
+        padding: 110px 0 120px;
+    }
+
+    .journeys-heading {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 50px;
+    }
+
+    .journeys-intro {
+        max-width: 560px;
+    }
+
+    .journeys-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .journey-card__image {
+        aspect-ratio: 16 / 10;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .journeys-section {
+        padding: 90px 0 100px;
+    }
+
+    .journeys-heading {
+        margin-bottom: 40px;
+    }
+
+    .journeys-heading h2 {
+        font-size: clamp(2.7rem, 13vw, 4rem);
+    }
+
+    .journeys-intro {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+
+    .journey-card__content {
+        padding: 25px 22px 28px;
+    }
+
+    .journey-card__content h3 {
+        font-size: 1.8rem;
+    }
+
+    .journeys-section .section-action {
+        margin-top: 50px;
+    }
+}
+
+/* =========================================================
+   FEATURED EXPERIENCES — PREMIUM EDITORIAL SECTION
+   ========================================================= */
+
+.experiences-section {
+    position: relative;
+    padding: 150px 0 160px;
+    background: #faf8f3;
+    overflow: hidden;
+}
+
+.experiences-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 70px;
+}
+
+.experiences-heading h2 {
+    margin: 18px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    color: #1e3028;
+}
+
+.experiences-intro {
+    max-width: 390px;
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: #59625d;
+}
+
+.experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.experience-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #f1eee7;
+    border: 1px solid rgba(30, 48, 40, 0.1);
+    overflow: hidden;
+    transition:
+        transform 0.6s cubic-bezier(0.2, 0.65, 0.25, 1),
+        box-shadow 0.6s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 55px rgba(30, 48, 40, 0.12);
+}
+
+.experience-card__image {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 4.5;
+    overflow: hidden;
+    background: #d9d5cb;
+}
+
+.experience-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+        transform 1s cubic-bezier(0.2, 0.65, 0.25, 1),
+        filter 0.6s ease;
+}
+
+.experience-card:hover .experience-card__image img {
+    transform: scale(1.06);
+}
+
+.experience-card__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(15, 30, 24, 0.3),
+        transparent 48%
+    );
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.experience-card__arrow {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 2;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    background: rgba(20, 35, 29, 0.28);
+    color: #ffffff;
+    font-size: 0.95rem;
+    backdrop-filter: blur(8px);
+    transition:
+        background 0.35s ease,
+        transform 0.35s ease;
+}
+
+.experience-card:hover .experience-card__arrow {
+    background: rgba(20, 35, 29, 0.7);
+    transform: rotate(8deg);
+}
+
+.experience-card__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 25px 24px 28px;
+}
+
+.experience-card__location {
+    margin-bottom: 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #9a7550;
+}
+
+.experience-card__content h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: #1e3028;
+}
+
+.experience-card__content p {
+    margin: 16px 0 22px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #646b66;
+}
+
+.experience-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.experience-card__meta span {
+    padding: 6px 9px;
+    border: 1px solid rgba(30, 48, 40, 0.14);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #59625d;
+}
+
+.experience-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    width: fit-content;
+    margin-top: auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(30, 48, 40, 0.45);
+    color: #1e3028;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.experience-card__link:hover {
+    gap: 15px;
+    border-color: #1e3028;
+}
+
+.experiences-section .section-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.experiences-section .intro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(30, 48, 40, 0.45);
+    color: #1e3028;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.experiences-section .intro-link:hover {
+    gap: 18px;
+    border-color: #1e3028;
+}
+
+
+/* ---------- EXPERIENCE RESPONSIVE ---------- */
+
+@media (max-width: 1100px) {
+
+    .experiences-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .experience-card__image {
+        aspect-ratio: 16 / 11;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .experiences-section {
+        padding: 110px 0 120px;
+    }
+
+    .experiences-heading {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 50px;
+    }
+
+    .experiences-intro {
+        max-width: 560px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .experiences-section {
+        padding: 90px 0 100px;
+    }
+
+    .experiences-heading {
+        margin-bottom: 40px;
+    }
+
+    .experiences-heading h2 {
+        font-size: clamp(2.7rem, 13vw, 4rem);
+    }
+
+    .experiences-intro {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+
+    .experiences-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .experience-card__content {
+        padding: 24px 22px 28px;
+    }
+
+    .experience-card__content h3 {
+        font-size: 1.8rem;
+    }
+
+    .experiences-section .section-action {
+        margin-top: 50px;
+    }
+}
+
+/* =========================================================
+   JOURNAL — EDITORIAL STORIES SECTION
+   ========================================================= */
+
+.journal-section {
+    position: relative;
+    padding: 150px 0 160px;
+    background: #1e3028;
+    color: #faf8f3;
+    overflow: hidden;
+}
+
+.journal-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 70px;
+}
+
+.journal-heading .section-label {
+    color: #c5a77d;
+}
+
+.journal-heading h2 {
+    margin: 18px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    color: #faf8f3;
+}
+
+.journal-intro {
+    max-width: 390px;
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: rgba(250, 248, 243, 0.68);
+}
+
+.journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.journal-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: rgba(250, 248, 243, 0.06);
+    border: 1px solid rgba(250, 248, 243, 0.14);
+    overflow: hidden;
+    transition:
+        transform 0.6s cubic-bezier(0.2, 0.65, 0.25, 1),
+        background 0.4s ease;
+}
+
+.journal-card:hover {
+    transform: translateY(-8px);
+    background: rgba(250, 248, 243, 0.09);
+}
+
+.journal-card__image {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #31463c;
+}
+
+.journal-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s cubic-bezier(0.2, 0.65, 0.25, 1);
+}
+
+.journal-card:hover .journal-card__image img {
+    transform: scale(1.06);
+}
+
+.journal-card__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(15, 30, 24, 0.35),
+        transparent 50%
+    );
+    pointer-events: none;
+}
+
+.journal-card__arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    z-index: 2;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    background: rgba(20, 35, 29, 0.35);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    transition:
+        background 0.35s ease,
+        transform 0.35s ease;
+}
+
+.journal-card:hover .journal-card__arrow {
+    background: rgba(20, 35, 29, 0.75);
+    transform: rotate(8deg);
+}
+
+.journal-card__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 30px 30px 32px;
+}
+
+.journal-card__label {
+    margin-bottom: 14px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #c5a77d;
+}
+
+.journal-card__content h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.65rem, 2.3vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: #faf8f3;
+}
+
+.journal-card__content p {
+    margin: 18px 0 28px;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(250, 248, 243, 0.65);
+}
+
+.journal-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin-top: auto;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(250, 248, 243, 0.4);
+    color: #faf8f3;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.journal-card__link:hover {
+    gap: 16px;
+    border-color: #faf8f3;
+}
+
+.journal-section .section-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.journal-section .intro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(250, 248, 243, 0.45);
+    color: #faf8f3;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.journal-section .intro-link:hover {
+    gap: 18px;
+    border-color: #faf8f3;
+}
+
+
+/* ---------- JOURNAL RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+    .journal-section {
+        padding: 110px 0 120px;
+    }
+
+    .journal-heading {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 50px;
+    }
+
+    .journal-intro {
+        max-width: 560px;
+    }
+
+    .journal-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .journal-card__image {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .journal-section {
+        padding: 90px 0 100px;
+    }
+
+    .journal-heading {
+        margin-bottom: 40px;
+    }
+
+    .journal-heading h2 {
+        font-size: clamp(2.7rem, 13vw, 4rem);
+    }
+
+    .journal-intro {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+
+    .journal-card__content {
+        padding: 25px 22px 28px;
+    }
+
+    .journal-card__content h3 {
+        font-size: 1.8rem;
+    }
+
+    .journal-section .section-action {
+        margin-top: 50px;
+    }
+}
+
+/* =========================================================
+   FEATURED STAYS — MOUNTAIN RETREATS SECTION
+   ========================================================= */
+
+.stays-section {
+    position: relative;
+    padding: 150px 0 160px;
+    background: #f1eee7;
+    overflow: hidden;
+}
+
+.stays-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 70px;
+}
+
+.stays-heading h2 {
+    margin: 18px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+    color: #1e3028;
+}
+
+.stays-intro {
+    max-width: 390px;
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: #59625d;
+}
+
+.stays-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.stay-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: #faf8f3;
+    border: 1px solid rgba(30, 48, 40, 0.12);
+    overflow: hidden;
+    transition:
+        transform 0.6s cubic-bezier(0.2, 0.65, 0.25, 1),
+        box-shadow 0.6s ease;
+}
+
+.stay-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 55px rgba(30, 48, 40, 0.13);
+}
+
+.stay-card__image {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #d9d5cb;
+}
+
+.stay-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+        transform 1s cubic-bezier(0.2, 0.65, 0.25, 1);
+}
+
+.stay-card:hover .stay-card__image img {
+    transform: scale(1.055);
+}
+
+.stay-card__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(15, 30, 24, 0.3),
+        transparent 48%
+    );
+    pointer-events: none;
+}
+
+.stay-card__arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    z-index: 2;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    background: rgba(20, 35, 29, 0.28);
+    color: #ffffff;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition:
+        background 0.35s ease,
+        transform 0.35s ease;
+}
+
+.stay-card:hover .stay-card__arrow {
+    background: rgba(20, 35, 29, 0.7);
+    transform: rotate(8deg);
+}
+
+.stay-card__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 30px 30px 32px;
+}
+
+.stay-card__location {
+    margin-bottom: 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #9a7550;
+}
+
+.stay-card__content h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.65rem, 2.3vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: #1e3028;
+}
+
+.stay-card__content p {
+    margin: 18px 0 22px;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: #646b66;
+}
+
+.stay-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 26px;
+}
+
+.stay-card__meta span {
+    padding: 6px 9px;
+    border: 1px solid rgba(30, 48, 40, 0.14);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #59625d;
+}
+
+.stay-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin-top: auto;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(30, 48, 40, 0.45);
+    color: #1e3028;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.stay-card__link:hover {
+    gap: 16px;
+    border-color: #1e3028;
+}
+
+.stays-section .section-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.stays-section .intro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(30, 48, 40, 0.45);
+    color: #1e3028;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.stays-section .intro-link:hover {
+    gap: 18px;
+    border-color: #1e3028;
+}
+
+
+/* ---------- STAYS RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+    .stays-section {
+        padding: 110px 0 120px;
+    }
+
+    .stays-heading {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 50px;
+    }
+
+    .stays-intro {
+        max-width: 560px;
+    }
+
+    .stays-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .stay-card__image {
+        aspect-ratio: 16 / 10;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .stays-section {
+        padding: 90px 0 100px;
+    }
+
+    .stays-heading {
+        margin-bottom: 40px;
+    }
+
+    .stays-heading h2 {
+        font-size: clamp(2.7rem, 13vw, 4rem);
+    }
+
+    .stays-intro {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+
+    .stay-card__content {
+        padding: 25px 22px 28px;
+    }
+
+    .stay-card__content h3 {
+        font-size: 1.8rem;
+    }
+
+    .stays-section .section-action {
+        margin-top: 50px;
+    }
+}
+
+/* =========================================================
+   FINAL JOURNEY CTA — CINEMATIC CLOSING SECTION
+   ========================================================= */
+
+.journey-cta {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #14251e;
+    color: #faf8f3;
+}
+
+.journey-cta__background {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(20, 37, 30, 0.96) 0%,
+            rgba(20, 37, 30, 0.78) 48%,
+            rgba(20, 37, 30, 0.45) 100%
+        ),
+        url("https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=2200&q=85")
+        center / cover no-repeat;
+    transform: scale(1.03);
+    transition: transform 1.5s cubic-bezier(0.2, 0.65, 0.25, 1);
+}
+
+.journey-cta:hover .journey-cta__background {
+    transform: scale(1.06);
+}
+
+.journey-cta__content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.journey-cta .section-label {
+    margin-bottom: 22px;
+    color: #c5a77d;
+}
+
+.journey-cta h2 {
+    max-width: 820px;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3.5rem, 7vw, 7.5rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    color: #faf8f3;
+}
+
+.journey-cta__description {
+    max-width: 540px;
+    margin: 32px 0 0;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(250, 248, 243, 0.72);
+}
+
+.journey-cta__actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 42px;
+}
+
+.journey-cta .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.journey-cta__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(250, 248, 243, 0.5);
+    color: #faf8f3;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+        gap 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.journey-cta__link:hover {
+    gap: 16px;
+    border-color: #faf8f3;
+}
+
+
+/* ---------- CTA RESPONSIVE ---------- */
+
+@media (max-width: 900px) {
+
+    .journey-cta {
+        min-height: 560px;
+    }
+
+    .journey-cta__content {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .journey-cta__background {
+        background-position: 62% center;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .journey-cta {
+        min-height: 620px;
+    }
+
+    .journey-cta__content {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .journey-cta h2 {
+        font-size: clamp(3rem, 15vw, 4.5rem);
+    }
+
+    .journey-cta__description {
+        font-size: 0.92rem;
+        line-height: 1.7;
+    }
+
+    .journey-cta__actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 34px;
+    }
+
+    .journey-cta__background {
+        background-position: 65% center;
+    }
+}

@@ -212,4 +212,467 @@ unique experiences and stays across the Himalayas.
 
 </section>
 
+
+<!-- =========================================================
+     FEATURED JOURNEYS
+     ========================================================= -->
+<section class="journeys-section">
+
+    <div class="container">
+
+        <div class="journeys-heading reveal reveal-horizontal">
+
+            <div>
+                <p class="section-label">Curated journeys</p>
+
+                <h2>
+                    Go beyond<br>
+                    the usual route.
+                </h2>
+            </div>
+
+            <p class="journeys-intro">
+                Thoughtfully planned journeys through Sikkim,
+                created for different ways of experiencing the mountains.
+            </p>
+
+        </div>
+
+        <div class="journeys-grid">
+
+            {% for journey in journeys %}
+
+                <article class="journey-card reveal reveal-card">
+
+                    {% if journey.image %}
+                        <a
+                            href="{% url 'tour_detail' journey.slug %}"
+                            class="journey-card__image"
+                        >
+                            <img
+                                src="{{ journey.image.url }}"
+                                alt="{{ journey.name }}"
+                                loading="lazy"
+                            >
+
+                            <span class="journey-card__arrow">
+                                ↗
+                            </span>
+                        </a>
+                    {% endif %}
+
+                    <div class="journey-card__content">
+
+                        {% if journey.featured %}
+                            <span class="journey-card__label">
+                                Featured journey
+                            </span>
+                        {% endif %}
+
+                        <h3>
+                            {{ journey.name }}
+                        </h3>
+
+                        <p>
+                            {{ journey.short_description }}
+                        </p>
+
+                        <a
+                            href="{% url 'tour_detail' journey.slug %}"
+                            class="journey-card__link"
+                        >
+                            Explore journey
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p class="empty-state">
+                    Journeys will appear here soon.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="section-action reveal reveal-fade">
+            <a href="{% url 'tour_list' %}" class="intro-link">
+                View all journeys
+                <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     FEATURED EXPERIENCES
+     ========================================================= -->
+<section class="experiences-section">
+
+    <div class="container">
+
+        <div class="experiences-heading reveal reveal-horizontal">
+
+            <div>
+                <p class="section-label">Ways to experience Sikkim</p>
+
+                <h2>
+                    Experience<br>
+                    the mountains.
+                </h2>
+            </div>
+
+            <p class="experiences-intro">
+                From quiet nature walks to mountain adventures,
+                discover experiences that let you see Sikkim differently.
+            </p>
+
+        </div>
+
+        <div class="experiences-grid">
+
+            {% for experience in experiences %}
+
+                <article class="experience-card reveal reveal-card">
+
+                    {% if experience.image %}
+                        <a
+                            href="{% url 'activity_detail' experience.slug %}"
+                            class="experience-card__image"
+                        >
+                            <img
+                                src="{{ experience.image.url }}"
+                                alt="{{ experience.name }}"
+                                loading="lazy"
+                            >
+
+                            <span class="experience-card__arrow">
+                                ↗
+                            </span>
+                        </a>
+                    {% endif %}
+
+                    <div class="experience-card__content">
+
+                        <span class="experience-card__location">
+                            {{ experience.destination.name }}
+                        </span>
+
+                        <h3>
+                            {{ experience.name }}
+                        </h3>
+
+                        <p>
+                            {{ experience.short_description }}
+                        </p>
+
+                        <div class="experience-card__meta">
+
+                            {% if experience.duration %}
+                                <span>{{ experience.duration }}</span>
+                            {% endif %}
+
+                            {% if experience.difficulty %}
+                                <span>{{ experience.difficulty }}</span>
+                            {% endif %}
+
+                        </div>
+
+                        <a
+                            href="{% url 'activity_detail' experience.slug %}"
+                            class="experience-card__link"
+                        >
+                            Explore experience
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p class="empty-state">
+                    Experiences will appear here soon.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="section-action reveal reveal-fade">
+
+            <a href="{% url 'activity_list' %}" class="intro-link">
+                View all experiences
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     JOURNAL / TRAVEL STORIES
+     ========================================================= -->
+<section class="journal-section">
+
+    <div class="container">
+
+        <div class="journal-heading reveal reveal-horizontal">
+
+            <div>
+                <p class="section-label">The Sikkim Journal</p>
+
+                <h2>
+                    Stories from<br>
+                    the mountains.
+                </h2>
+            </div>
+
+            <p class="journal-intro">
+                Travel guides, local stories and useful ideas for
+                discovering Sikkim beyond the usual itinerary.
+            </p>
+
+        </div>
+
+        <div class="journal-grid">
+
+            {% for post in journal_posts %}
+
+                <article class="journal-card reveal reveal-card">
+
+                    {% if post.image %}
+                        <a
+                            href="{% url 'post_detail' post.slug %}"
+                            class="journal-card__image"
+                        >
+                            <img
+                                src="{{ post.image.url }}"
+                                alt="{{ post.title }}"
+                                loading="lazy"
+                            >
+
+                            <span class="journal-card__arrow">
+                                ↗
+                            </span>
+                        </a>
+                    {% endif %}
+
+                    <div class="journal-card__content">
+
+                        {% if post.featured %}
+                            <span class="journal-card__label">
+                                Featured story
+                            </span>
+                        {% endif %}
+
+                        <h3>
+                            {{ post.title }}
+                        </h3>
+
+                        <p>
+                            {{ post.short_description }}
+                        </p>
+
+                        <a
+                            href="{% url 'post_detail' post.slug %}"
+                            class="journal-card__link"
+                        >
+                            Read story
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p class="empty-state">
+                    Journal stories will appear here soon.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="section-action reveal reveal-fade">
+
+            <a href="{% url 'post_list' %}" class="intro-link">
+                Explore the journal
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     FEATURED STAYS
+     ========================================================= -->
+<section class="stays-section">
+
+    <div class="container">
+
+        <div class="stays-heading reveal reveal-horizontal">
+
+            <div>
+                <p class="section-label">Stay in Sikkim</p>
+
+                <h2>
+                    Places to<br>
+                    slow down.
+                </h2>
+            </div>
+
+            <p class="stays-intro">
+                From intimate mountain retreats to comfortable stays
+                in the heart of Sikkim, find a place that becomes
+                part of the journey.
+            </p>
+
+        </div>
+
+        <div class="stays-grid">
+
+            {% for stay in stays %}
+
+                <article class="stay-card reveal reveal-card">
+
+                    {% if stay.image %}
+                        <a
+                            href="{% url 'stay_detail' stay.slug %}"
+                            class="stay-card__image"
+                        >
+                            <img
+                                src="{{ stay.image.url }}"
+                                alt="{{ stay.name }}"
+                                loading="lazy"
+                            >
+
+                            <span class="stay-card__arrow">
+                                ↗
+                            </span>
+                        </a>
+                    {% endif %}
+
+                    <div class="stay-card__content">
+
+                        <span class="stay-card__location">
+                            {{ stay.destination.name }}
+                        </span>
+
+                        <h3>
+                            {{ stay.name }}
+                        </h3>
+
+                        <p>
+                            {{ stay.short_description }}
+                        </p>
+
+                        <div class="stay-card__meta">
+
+                            {% if stay.stay_type %}
+                                <span>{{ stay.stay_type }}</span>
+                            {% endif %}
+
+                            {% if stay.price_range %}
+                                <span>{{ stay.price_range }}</span>
+                            {% endif %}
+
+                        </div>
+
+                        <a
+                            href="{% url 'stay_detail' stay.slug %}"
+                            class="stay-card__link"
+                        >
+                            Explore stay
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p class="empty-state">
+                    Stays will appear here soon.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="section-action reveal reveal-fade">
+
+            <a href="{% url 'stay_list' %}" class="intro-link">
+                Explore all stays
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     PLAN YOUR JOURNEY — FINAL CTA
+     ========================================================= -->
+<section class="journey-cta">
+
+    <div class="journey-cta__background" aria-hidden="true"></div>
+
+    <div class="container journey-cta__content">
+
+        <p class="section-label reveal reveal-horizontal">
+            Your Sikkim story starts here
+        </p>
+
+        <h2 class="reveal reveal-clip">
+            Plan a journey<br>
+            worth remembering.
+        </h2>
+
+        <p class="journey-cta__description reveal reveal-fade">
+            Tell us how you want to experience Sikkim and we'll help
+            shape the journey around you.
+        </p>
+
+        <div class="journey-cta__actions reveal reveal-fade">
+
+            <a
+                href="{% url 'enquiry_create' %}"
+                class="btn btn-light"
+            >
+                Plan my journey
+                <span aria-hidden="true">↗</span>
+            </a>
+
+            <a
+                href="{% url 'destination_list' %}"
+                class="journey-cta__link"
+            >
+                Explore destinations
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}
