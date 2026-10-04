@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Enquiry Received | Sikkim Tour{% endblock %}
+
+{% block meta_description %}
+Your Sikkim journey enquiry has been received.
+{% endblock %}
+
+{% block content %}
+
+<section class="enquiry-success">
+
+    <div class="container">
+
+        <p class="section-label">
+            Thank you
+        </p>
+
+        <h1>
+            Your journey
+            <span>starts here.</span>
+        </h1>
+
+        <p>
+            We've received your enquiry. We'll review your travel plans
+            and get back to you with ideas for your Sikkim journey.
+        </p>
+
+        <a href="{% url 'home' %}" class="btn btn-dark">
+            Return home
+            <span aria-hidden="true">↗</span>
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

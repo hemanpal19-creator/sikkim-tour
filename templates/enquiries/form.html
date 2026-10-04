@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Plan Your Journey | Sikkim Tour{% endblock %}
+
+{% block meta_description %}
+Tell us about your Sikkim travel plans and let us help you shape
+a journey around your dates, interests and travel style.
+{% endblock %}
+
+{% block content %}
+
+<section class="enquiry-section">
+
+    <div class="container enquiry-grid">
+
+        <div class="enquiry-intro">
+
+            <p class="section-label">
+                Plan your journey
+            </p>
+
+            <h1>
+                Let's create your
+                <span> Sikkim story.</span>
+            </h1>
+
+            <p>
+                Tell us a little about the journey you have in mind.
+                Whether you're dreaming of quiet mountain villages,
+                high-altitude lakes or a slower Himalayan escape,
+                we'll use your preferences to shape the experience.
+            </p>
+
+            <div class="enquiry-note">
+                <span aria-hidden="true">↗</span>
+                <p>
+                    Share your plans and we'll get back to you with
+                    ideas for your journey.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="enquiry-form-wrapper">
+
+            <form method="post" class="enquiry-form">
+
+                {% csrf_token %}
+
+                {{ form.non_field_errors }}
+
+                <div class="form-field">
+                    <label for="{{ form.name.id_for_label }}">
+                        Your name
+                    </label>
+
+                    {{ form.name }}
+
+                    {{ form.name.errors }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.email.id_for_label }}">
+                        Email address
+                    </label>
+
+                    {{ form.email }}
+
+                    {{ form.email.errors }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.phone.id_for_label }}">
+                        Phone number
+                    </label>
+
+                    {{ form.phone }}
+
+                    {{ form.phone.errors }}
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-field">
+                        <label for="{{ form.travel_date.id_for_label }}">
+                            Travel date
+                        </label>
+
+                        {{ form.travel_date }}
+
+                        {{ form.travel_date.errors }}
+                    </div>
+
+                    <div class="form-field">
+                        <label for="{{ form.travelers.id_for_label }}">
+                            Travelers
+                        </label>
+
+                        {{ form.travelers }}
+
+                        {{ form.travelers.errors }}
+                    </div>
+
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.message.id_for_label }}">
+                        Tell us about your journey
+                    </label>
+
+                    {{ form.message }}
+
+                    {{ form.message.errors }}
+                </div>
+
+                <button type="submit" class="btn btn-dark">
+                    Send enquiry
+                    <span aria-hidden="true">↗</span>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

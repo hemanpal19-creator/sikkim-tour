@@ -43,4 +43,9 @@ urlpatterns = [
         "journal/",
         include("blog.urls"),
     ),
+    
+    path(
+        "plan-your-journey/",
+        include("enquiries.urls"),
+    ),
 ]
