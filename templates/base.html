@@ -47,7 +47,7 @@
             </div>
 
             <!-- Primary business CTA. -->
-            <a href="{% url 'enquiry_create' %}" class="nav-cta">
+            <a href="{% if request.resolver_match.url_name == 'home' %}#plan-your-journey{% else %}{% url 'home' %}#plan-your-journey{% endif %}" class="nav-cta">
                 Plan my journey
             </a>
 

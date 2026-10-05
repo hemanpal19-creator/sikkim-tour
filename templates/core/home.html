@@ -53,7 +53,7 @@ unique experiences and stays across the Himalayas.
                 <span aria-hidden="true">↗</span>
             </a>
 
-            <a href="{% url 'enquiry_create' %}" class="hero-text-link">
+            <a href="#plan-your-journey" class="hero-text-link">
                 Plan my journey
                 <span aria-hidden="true">→</span>
             </a>
@@ -813,6 +813,131 @@ unique experiences and stays across the Himalayas.
                 Explore destinations
                 <span aria-hidden="true">→</span>
             </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     PLAN YOUR JOURNEY
+     Homepage enquiry section.
+     The header and homepage CTAs will scroll directly here.
+     ========================================================= -->
+
+<section class="enquiry-section" id="plan-your-journey">
+
+    <div class="container">
+
+        <div class="enquiry-grid">
+
+            <!-- =================================================
+                 LEFT — JOURNEY INTRO
+                 ================================================= -->
+
+            <div class="enquiry-intro reveal reveal-text">
+
+                <div>
+                    <p class="section-label">
+                        Plan your journey
+                    </p>
+
+                    <h1>
+                        Let's create your
+                        Sikkim story.
+                    </h1>
+
+                    <p>
+                        Tell us a little about the journey you have in mind.
+                        Whether you're dreaming of quiet mountain villages,
+                        high-altitude lakes or a slower Himalayan escape,
+                        we'll use your preferences to shape the experience.
+                    </p>
+                </div>
+
+                <div class="enquiry-note">
+                    ↗ &nbsp; Share your plans and we'll get back to you
+                    with ideas for your journey.
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RIGHT — ENQUIRY FORM
+                 ================================================= -->
+
+            <div class="enquiry-form-wrapper reveal reveal-card">
+
+                <form
+                    method="post"
+                    action="{% url 'enquiry_create' %}"
+                    class="enquiry-form"
+                >
+
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+
+                    <div class="form-field">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                        {{ form.name.errors }}
+                    </div>
+
+
+                    <div class="form-field">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+
+
+                    <div class="form-field">
+                        {{ form.phone.label_tag }}
+                        {{ form.phone }}
+                        {{ form.phone.errors }}
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-field">
+                            {{ form.travel_date.label_tag }}
+                            {{ form.travel_date }}
+                            {{ form.travel_date.errors }}
+                        </div>
+
+                        <div class="form-field">
+                            {{ form.travelers.label_tag }}
+                            {{ form.travelers }}
+                            {{ form.travelers.errors }}
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+                        {{ form.message.label_tag }}
+                        {{ form.message }}
+                        {{ form.message.errors }}
+                    </div>
+
+
+                    <button type="submit" class="btn btn-dark">
+                        Send enquiry
+                        <span aria-hidden="true">↗</span>
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 

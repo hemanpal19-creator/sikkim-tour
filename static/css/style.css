@@ -7805,3 +7805,297 @@ p {
     color: #ffffff !important;
     border-bottom-color: rgba(245, 240, 230, 0.45) !important;
 }
+
+/* =========================================================
+   TOURS / JOURNEYS — CARD TITLE COLOR
+   ========================================================= */
+
+/*
+    Keep the main "Curated Journeys" introduction unchanged.
+    Only the individual journey names become bright and readable.
+*/
+.tour-card h2,
+.tour-card h2 a,
+.tour-card h3,
+.tour-card h3 a {
+    color: #ffffff;
+}
+
+/* =========================================================
+   JOURNEY DETAIL — TITLE COLOR
+   ========================================================= */
+
+/*
+    Journey detail titles sit on the dark green hero.
+    Keep the title bright and readable.
+*/
+.tour-detail h1,
+.tour-detail__hero h1,
+.tour-detail__hero-title {
+    color: #ffffff !important;
+}
+/* =========================================================
+   EXPERIENCES — ACTIVITY NAMES
+   ========================================================= */
+
+/* Keep only the individual experience names white. */
+.activity-card h2,
+.activity-card h2 a,
+.activity-card h3,
+.activity-card h3 a {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   PLAN YOUR JOURNEY — PREMIUM ENQUIRY PAGE
+   ========================================================= */
+
+/* Main layout */
+.enquiry-section {
+    min-height: calc(100vh - 90px);
+    padding: 150px 0 100px;
+    background: #f5f1e8;
+}
+
+.enquiry-grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(480px, 1.1fr);
+    gap: 70px;
+    align-items: stretch;
+}
+
+/* ---------------------------------------------------------
+   LEFT — JOURNEY INTRO
+   --------------------------------------------------------- */
+
+.enquiry-intro {
+    position: relative;
+    overflow: hidden;
+    padding: 64px 58px;
+    background: #17372d;
+    color: #f5f0e6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 650px;
+}
+
+/* Decorative mountain-inspired shapes */
+.enquiry-intro::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -190px;
+    bottom: -170px;
+    border: 1px solid rgba(199, 169, 103, 0.35);
+    border-radius: 50%;
+}
+
+.enquiry-intro::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    right: -100px;
+    bottom: -70px;
+    border: 1px solid rgba(199, 169, 103, 0.18);
+    border-radius: 50%;
+}
+
+.enquiry-intro .section-label {
+    position: relative;
+    z-index: 2;
+    color: #c7a967;
+}
+
+.enquiry-intro h1 {
+    position: relative;
+    z-index: 2;
+    max-width: 520px;
+    margin: 28px 0 30px;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+}
+
+.enquiry-intro > p {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    color: rgba(245, 240, 230, 0.72);
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+/* Small editorial note at the bottom */
+.enquiry-note {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(245, 240, 230, 0.18);
+    color: rgba(245, 240, 230, 0.88);
+}
+
+.enquiry-note::first-letter {
+    color: #c7a967;
+}
+
+/* ---------------------------------------------------------
+   RIGHT — FORM
+   --------------------------------------------------------- */
+
+.enquiry-form-wrapper {
+    position: relative;
+    padding: 48px 50px 52px;
+    background: #ffffff;
+    border: 1px solid rgba(23, 55, 45, 0.12);
+    box-shadow: 0 24px 70px rgba(23, 55, 45, 0.08);
+}
+
+.enquiry-form-wrapper::before {
+    content: "YOUR JOURNEY";
+    display: block;
+    margin-bottom: 34px;
+    color: #b08c43;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+}
+
+/* Form fields */
+.enquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.form-field label {
+    color: #17372d;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    padding: 17px 18px;
+    border: 1px solid #d8d5ce;
+    border-radius: 0;
+    background: #fcfbf8;
+    color: #17372d;
+    font: inherit;
+    outline: none;
+    transition:
+        border-color 220ms ease,
+        box-shadow 220ms ease,
+        background 220ms ease;
+}
+
+.form-field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #8b8d88;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    border-color: #17372d;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(23, 55, 45, 0.07);
+}
+
+/* Date + travelers */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+/* Submit button */
+.enquiry-form .btn-dark {
+    align-self: flex-start;
+    min-width: 190px;
+    margin-top: 8px;
+    padding: 17px 26px;
+    background: #17372d;
+    color: #ffffff;
+    border: 1px solid #17372d;
+    transition:
+        background 220ms ease,
+        transform 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.enquiry-form .btn-dark:hover {
+    background: #245243;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(23, 55, 45, 0.18);
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .enquiry-section {
+        padding: 120px 0 70px;
+    }
+
+    .enquiry-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .enquiry-intro {
+        min-height: auto;
+        padding: 50px 42px;
+    }
+
+    .enquiry-form-wrapper {
+        padding: 40px 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    .enquiry-section {
+        padding: 105px 0 50px;
+    }
+
+    .enquiry-intro {
+        padding: 42px 28px;
+    }
+
+    .enquiry-intro h1 {
+        font-size: 3rem;
+    }
+
+    .enquiry-form-wrapper {
+        padding: 32px 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+}
+

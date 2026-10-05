@@ -4,6 +4,7 @@ from destinations.models import Destination, Activity
 from tours.models import Tour
 from blog.models import Post
 from stays.models import Stay
+from enquiries.forms import EnquiryForm
 
 def home(request):
     """
@@ -44,6 +45,8 @@ def home(request):
         .order_by("-featured", "name")[:3]
     )
 
+    form = EnquiryForm()
+    
     return render(
         request,
         "core/home.html",
@@ -53,5 +56,6 @@ def home(request):
             "experiences": experiences,
             "journal_posts": journal_posts,
             "stays": stays,
+            "form": form,
         },
     )
